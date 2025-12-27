@@ -1,0 +1,95 @@
+---
+import Layout from "../layouts/Layout.astro";
+import LanguageCard from "../components/LanguageCard.astro";
+import "../styles/global.css";
+
+// Estructura de datos agrupada por categorías
+const allData = [
+	{
+		category: "Backend & Lenguajes",
+		items: [
+			{
+				title: "Java",
+				desc: "POO, Streams y Spring Boot",
+				color: "#f89820",
+				href: "#",
+			},
+			{
+				title: "Python",
+				desc: "Scripts, Data y Backend",
+				color: "#3776ab",
+				href: "#",
+			},
+			{
+				title: "PHP",
+				desc: "Laravel y Modern PHP",
+				color: "#777bb4",
+				href: "#",
+			},
+		],
+	},
+	{
+		category: "Frontend & UI",
+		items: [
+			{
+				title: "React",
+				desc: "Componentes y Hooks",
+				color: "#61dafb",
+				href: "#",
+			},
+			{
+				title: "CSS/Sass",
+				desc: "Diseño, Grid y Flexbox",
+				color: "#c69",
+				href: "#",
+			},
+			{
+				title: "Astro",
+				desc: "Islands Architecture",
+				color: "#ff5d01",
+				href: "#",
+			},
+		],
+	},
+	{
+		category: "Bases de Datos",
+		items: [
+			{ title: "MySQL", desc: "Relational & SQL", color: "#00758f", href: "#" },
+			{
+				title: "MongoDB",
+				desc: "NoSQL & Aggregations",
+				color: "#47A248",
+				href: "#",
+			},
+		],
+	},
+];
+---
+
+<Layout title="DaviNotes">
+	<header class="hero">
+		<h1>Davi<span class="text-gradient">Notes</span></h1>
+		<p class="subtitle">Mi repositorio personal de conocimiento.</p>
+	</header>
+
+	{
+		allData.map((section) => (
+			<section class="tech-section">
+				<h2 class="section-title">{section.category}</h2>
+				<hr>
+
+				<div class="link-card-grid">
+					{section.items.map((lang) => (
+						<LanguageCard
+							href={lang.href}
+							title={lang.title}
+							description={lang.desc}
+							color={lang.color}
+						/>
+					))}
+				</div>
+			</section>
+		))
+	}
+</Layout>
+
