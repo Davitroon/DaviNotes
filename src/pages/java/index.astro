@@ -1,0 +1,48 @@
+---
+import DocsLayout from "../../layouts/DocsLayout.astro";
+import "../../styles/doc-language.css";
+---
+
+<DocsLayout title="Java">
+	<h1 class="title">Apuntes de <span class="text-java">Java</span></h1>
+	<p class="intro">
+		Lenguaje orientado a objetos, robusto y multiplataforma. Aquí guardo mis
+		notas sobre Spring Boot, Streams y concurrencia.
+	</p>
+
+	<hr class="divider" />
+
+	<section>
+		<h2>Conceptos Clave</h2>
+		<ul class="topic-list">
+			<li>
+				<a href="#">
+					<h3>Sintaxis Básica</h3>
+					<p>Variables, tipos de datos y operadores.</p>
+				</a>
+			</li>
+			<li>
+				<a href="#">
+					<h3>POO</h3>
+					<p>Clases, herencia, polimorfismo e interfaces.</p>
+				</a>
+			</li>
+			<li>
+				<a href="#">
+					<h3>Colecciones</h3>
+					<p>ArrayList, HashMap y Stream API.</p>
+				</a>
+			</li>
+		</ul>
+	</section>
+</DocsLayout>
+
+<style>
+	.text-java {
+		color: #f89820;
+	}
+
+	.topic-list a:hover {
+		border-color: #f89820;
+	}
+</style>
