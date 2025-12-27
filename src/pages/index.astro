@@ -1,0 +1,34 @@
+---
+import HomeLayout from "../layouts/HomeLayout.astro";
+import LanguageCard from "../components/LanguageCard.astro";
+import "../styles/global.css";
+
+import { languages } from "../data/languages";
+---
+
+<HomeLayout title="DaviNotes">
+    <header class="hero">
+        <h1>Davi<span class="text-gradient">Notes</span></h1>
+        <p class="subtitle">Mi repositorio personal de conocimiento.</p>
+    </header>
+
+    {
+        languages.map((section) => (
+            <section class="tech-section">
+                <h2 class="section-title">{section.category}</h2>
+                <hr>
+
+                <div class="link-card-grid">
+                    {section.items.map((lang) => (
+                        <LanguageCard
+                            href={lang.href}
+                            title={lang.title}
+                            description={lang.desc}
+                            color={lang.color}
+                        />
+                    ))}
+                </div>
+            </section>
+        ))
+    }
+</HomeLayout>
