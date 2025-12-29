@@ -2,7 +2,7 @@
 import { ClientRouter } from "astro:transitions";
 import SideBar from "../components/SideBar.astro";
 import "../styles/global.css";
-
+// Asegúrate de importar tus datos
 import { languages } from "../data/languages";
 
 interface Props {
@@ -10,9 +10,20 @@ interface Props {
 }
 
 const { title } = Astro.props;
-
-
 const currentPath = Astro.url.pathname;
+
+// Limpiamos la ruta de barras al final para evitar errores
+const cleanPath = currentPath.replace(/\/$/, "");
+const segments = cleanPath.split("/").filter(Boolean);
+
+const breadcrumbs = segments.map((segment, index) => {
+	const href = "/" + segments.slice(0, index + 1).join("/");
+	const label = segment
+		.replace(/-/g, " ")
+		.replace(/\b\w/g, (char) => char.toUpperCase());
+
+	return { label, href };
+});
 ---
 
 <!doctype html>
@@ -24,11 +35,38 @@ const currentPath = Astro.url.pathname;
 	</head>
 	<body>
 		<div class="layout-container">
-            <SideBar languages={languages} currentPath={currentPath} />
+			<SideBar languages={languages} currentPath={currentPath} />
 
 			<main class="content-area">
 				<header class="top-bar">
-					<span class="breadcrumb">Home / {title}</span>
+					<div class="breadcrumb-container">
+						<button class="back-button" onclick="history.back()">
+							← Go back
+						</button>
+
+						<div class="breadcrumb">
+							<a href="/" class="crumb-link">Home</a>
+
+							{
+								breadcrumbs.map((crumb, index) => {
+									const isLast = index === breadcrumbs.length - 1;
+
+									return (
+										<>
+											<span class="separator">/</span>
+											{isLast ? (
+												<span class="crumb-text">{crumb.label}</span>
+											) : (
+												<a href={crumb.href} class="crumb-link">
+													{crumb.label}
+												</a>
+											)}
+										</>
+									);
+								})
+							}
+						</div>
+					</div>
 				</header>
 
 				<div class="page-content">
@@ -48,17 +86,78 @@ const currentPath = Astro.url.pathname;
 		color: white;
 	}
 
-	.top-bar {
-		padding: 1rem 3rem;
-		border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-		color: #666;
-		font-size: 0.9rem;
-	}
-
 	.page-content {
 		max-width: 900px;
 		margin: 0 auto;
 		padding: 3rem;
 		line-height: 1.6;
+	}
+
+	.content-area {
+		min-height: 100vh;
+	}
+
+	.top-bar {
+		position: sticky;
+		top: 0;
+		z-index: 10;
+		padding: 1rem 3rem;
+		border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+		background-color: rgba(13, 15, 20, 0.95); /* Efecto semi-transparente */
+		backdrop-filter: blur(5px);
+	}
+
+	.breadcrumb-container {
+		display: flex;
+		align-items: center;
+		gap: 1.5rem; /* Separamos el botón de los breadcrumbs */
+	}
+
+	.breadcrumb {
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+		font-size: 0.9rem;
+	}
+
+	/* Estilo para los enlaces (Padres) */
+	.crumb-link {
+		color: #888;
+		text-decoration: none;
+		transition: color 0.2s ease;
+	}
+
+	.crumb-link:hover {
+		color: #a78bfa; /* Color de acento al pasar el mouse */
+		text-decoration: underline;
+	}
+
+	/* Estilo para el texto actual (Hijo final) */
+	.crumb-text {
+		color: white;
+		font-weight: 500;
+		cursor: default;
+	}
+
+	.separator {
+		color: #444;
+		user-select: none;
+	}
+
+	.back-button {
+		background: transparent;
+		border: 1px solid rgba(255, 255, 255, 0.1);
+		border-radius: 6px;
+		padding: 0.35rem 0.75rem;
+		color: #aaa;
+		cursor: pointer;
+		font-size: 0.85rem;
+		transition: all 0.2s ease;
+	}
+
+	.back-button:hover {
+		color: white;
+		border-color: rgba(255, 255, 255, 0.3);
+		background: rgba(255, 255, 255, 0.05);
 	}
 </style>
