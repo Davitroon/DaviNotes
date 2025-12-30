@@ -45,6 +45,7 @@ Lists are the most versatile data structure in Python. They are **ordered**, **m
     # Slicing (Getting a sub-list)
     print(fruits[1:3]) # Output: ['blueberry', 'cherry']
 
+
 ```
 
 

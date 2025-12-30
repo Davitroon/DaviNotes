@@ -12,6 +12,8 @@ Unlike **Java** or **C++**, Python does not use braces `{}` to define blocks of 
 
 Python focuses on simplicity, using Indentation to define the structure and hierarchy of the code.
 
+---
+
 ## Table of Contents
 <div id="content-table">
 
@@ -26,6 +28,7 @@ Python focuses on simplicity, using Indentation to define the structure and hier
 
 </div>
 
+---
 
 ## 1. Structure
 
@@ -48,6 +51,8 @@ In Python, indentation is not just for aesthetics; it is a syntactical requireme
 - **Consistency**: You must use the same number of spaces for the same block of code.
 - **Colon** (`:`): Control structures (like `if`, `for`, `def`) always end with a colon, signaling that an indented block follows.
 - **No Semicolons**: You do not need to end lines with ;.
+
+---
 
 ## 2. Variables
 
@@ -88,6 +93,7 @@ You can create **multiline strings** in Python using triple quotes (`"""` or `''
 
 ```
 
+---
 
 ## 3. Operators
 
@@ -131,6 +137,8 @@ Unlike Java (which uses `&&,` `||,` `!`), Python uses `and`, `or`, and `not`.
 
 
 ```
+
+---
 
 ## 4. Control Structures
 Control structures manage the flow of the program based on logic and iteration. In Python, these structures rely heavily on *indentation and colons* (`:`) rather than the curly braces `{}` found in Java or C++. 
