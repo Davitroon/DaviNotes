@@ -72,4 +72,33 @@ export const languages: Category[] = [
 			},
 		],
 	},
+	{
+		category: "Frontend",
+		items: [
+			{
+				title: "Astro",
+				desc: "Build fast websites with modern frontend frameworks",
+				color: "#ff5a03",
+				href: "/astro",
+				icon: "🚀",
+				concepts: [
+					{
+						title: "Components",
+						desc: "Creating reusable UI components using Astro or framework components.",
+						href: "/astro/components",
+					},
+					{
+						title: "Pages & Routing",
+						desc: "How to create pages and manage routes in an Astro project.",
+						href: "/astro/pages-routing",
+					},
+					{
+						title: "Layouts & Slots",
+						desc: "Organize pages using layouts and pass content to components via slots.",
+						href: "/astro/layouts-slots",
+					},
+				],
+			},
+		],
+	},
 ];
