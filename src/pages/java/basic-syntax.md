@@ -16,7 +16,7 @@ All executable code in Java must reside inside a **Class**. There are no "free-f
 <div id="content-table">
 
 - [1. Structure](#1-structure "Learn the basic Java program structure")
-- [2. Variables and Data Types](#2-variables-data-types "Overview of Java primitive and reference types")
+- [2. Variables](#2-variables "Overview of Java primitive and reference types")
 - [3. Control Structures](#3-control-structures "Learn how to control program flow in Java")
   - [3.1 Conditional Statements](#31-conditional-statements "Using if and else statements")
   - [3.2 Switch Statement](#32-switch-statement "Selecting code blocks based on a variable")
@@ -55,7 +55,7 @@ Every Java application has an entry point called the `main` method. This example
 
 ---
 
-## 2. Variables and Data Types
+## 2. Variables
 
 Java handles data in two ways: **Primitive Types** (store simple values directly) and **Reference Types** (store addresses to complex objects).
 
@@ -93,6 +93,19 @@ Example
 
 ```
 
+You can create **multiline strings** in Java using **Text Blocks** (available since Java 13) with triple quotes (`"""`). This is useful for long texts or formatted strings that span several lines.
+
+```java
+
+    String text = """
+        This is a
+        very long text,
+        so it can be written across multiple lines.
+        """;
+
+
+```
+
 ---
 
 ## 3. Control Structures
@@ -116,6 +129,20 @@ Conditional statements allow the program to execute different blocks of code dep
     } else {
         System.out.println("Everything is fine, have fun!");
     }
+
+
+```
+
+Java also supports a short form of conditional using the ternary operator `? :`. It is useful when you need to assign a value based on a condition in a single line.
+
+```java
+
+    boolean admin = true;
+
+    // Using ternary operator
+    String message = (admin == true ? "Welcome, admin!" : "You can't access");
+
+    System.out.println(message); // Output: Welcome, admin!
 
 
 ```
