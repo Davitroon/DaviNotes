@@ -130,13 +130,13 @@ p {
 }
 
 /* ================================
-   Navigation & Links
+   .nav-divigation & Links
    ================================ */
-nav li {
+.nav-div li {
 	margin-bottom: 0.25rem;
 }
 
-nav a {
+.nav-div a {
 	display: flex;
 	gap: 10px;
 	padding: 0.5rem 1rem;
@@ -149,12 +149,12 @@ nav a {
 	transition: 0.3s ease;
 }
 
-nav a:hover {
+.nav-div a:hover {
 	background: rgba(255, 255, 255, 0.05);
 	color: white;
 }
 
-nav a.active {
+.nav-div a.active {
 	background: rgba(136, 58, 234, 0.15);
 	color: #a78bfa;
 	border-left: 3px solid #a78bfa;

@@ -2,80 +2,48 @@
 import { ClientRouter } from "astro:transitions";
 import SideBar from "../components/SideBar.astro";
 import ScrollToTop from "../components/ScrollToTop.astro";
+import Breadcrumbs from "../components/Breadcrumbs.astro"; // <--- Importamos
 import "../styles/global.css";
 import "../styles/doc-layout.css";
 import { languages } from "../data/languages";
 
 interface Props {
-	title: string;
+    title: string;
 }
 
 const { title } = Astro.props;
 const currentPath = Astro.url.pathname;
-
-// Limpiamos la ruta de barras al final para evitar errores
-const cleanPath = currentPath.replace(/\/$/, "");
-const segments = cleanPath.split("/").filter(Boolean);
-
-const breadcrumbs = segments.map((segment, index) => {
-	const href = "/" + segments.slice(0, index + 1).join("/");
-	const label = segment
-		.replace(/-/g, " ")
-		.replace(/\b\w/g, (char) => char.toUpperCase());
-
-	return { label, href };
-});
 ---
 
 <!doctype html>
 <html lang="es">
-	<head>
-		<meta charset="UTF-8" />
-		<title>{title}</title>
-		<ClientRouter />
-	</head>
-	<body>
-		<div class="layout-container">
-			<SideBar languages={languages} currentPath={currentPath} />
+    <head>
+        <meta charset="UTF-8" />
+        <title>{title}</title>
+        <ClientRouter />
+    </head>
+    <body>
+        <div class="layout-container">
+            <SideBar languages={languages} currentPath={currentPath} transition:persist />
 
-			<main class="content-area">
-				<header class="top-bar">
-					<div class="breadcrumb-container">
-						<button class="back-button" onclick="history.back()">
-							← Go back
-						</button>
+            <main class="content-area">
+                <header class="top-bar">
+                    <div class="breadcrumb-container">
+                        <button class="back-button" onclick="history.back()">
+                            ← Go back
+                        </button>
 
-						<div class="breadcrumb">
-							<a href="/" class="crumb-link">Home</a>
+                        <Breadcrumbs /> 
+                        
+                    </div>
+                </header>
 
-							{
-								breadcrumbs.map((crumb, index) => {
-									const isLast = index === breadcrumbs.length - 1;
+                <div class="page-content">
+                    <slot />
+                </div>
+            </main>
+        </div>
 
-									return (
-										<>
-											<span class="separator">/</span>
-											{isLast ? (
-												<span class="crumb-text">{crumb.label}</span>
-											) : (
-												<a href={crumb.href} class="crumb-link">
-													{crumb.label}
-												</a>
-											)}
-										</>
-									);
-								})
-							}
-						</div>
-					</div>
-				</header>
-
-				<div class="page-content">
-					<slot />
-				</div>
-			</main>
-		</div>
-
-		<ScrollToTop />
-	</body>
+        <ScrollToTop />
+    </body>
 </html>

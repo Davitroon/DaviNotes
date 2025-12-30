@@ -66,29 +66,6 @@
     gap: 1.5rem;
 }
 
-.breadcrumb {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    font-size: 0.9rem;
-}
-
-.crumb-link {
-    color: #888;
-    text-decoration: none;
-}
-
-.crumb-text {
-    color: white;
-    font-weight: 500;
-    cursor: default;
-}
-
-.separator {
-    color: #444;
-    user-select: none;
-}
-
 .back-button {
     background: transparent;
     border: 1px solid rgba(255, 255, 255, 0.1);
@@ -155,14 +132,12 @@
 }
 
 #content-table a:hover,
-.doc-link:hover,
-.crumb-link:hover {
+.doc-link:hover {
     color: #a78bfa;
 }
 
 #content-table a,
-.doc-link,
-.crumb-link {
+.doc-link {
     font-weight: bold;
     transition: 0.2s ease;
 }
