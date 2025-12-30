@@ -1,0 +1,42 @@
+---
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+	<div class="footer-content">
+		<p>
+			&copy; {currentYear}. Built with <a
+				href="https://astro.build"
+				target="_blank">Astro</a
+			>.
+		</p>
+	</div>
+</footer>
+
+<style>
+	.site-footer {
+		padding: 2rem 0;
+		border-top: 1px solid rgba(255, 255, 255, 0.1);
+		background-color: var(--dark-bg);
+	}
+
+	.footer-content {
+		text-align: center;
+		font-size: 0.9rem;
+	}
+
+	p {
+		color: #71717a;
+		margin: 0;
+	}
+
+	a {
+		color: #a1a1aa;
+		transition: color 0.2s;
+		font-weight: bold;
+	}
+
+	a:hover {
+		color: var(--accent-light); 
+	}
+</style>

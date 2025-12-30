@@ -28,9 +28,7 @@ body {
 
 main {
 	margin: auto;
-	padding: 1rem;
 	width: 100%;
-	max-width: calc(100% - 2rem);
 }
 
 /* ================================
