@@ -1,0 +1,43 @@
+---
+import DocsLayout from "../../layouts/DocsLayout.astro";
+
+import { languages } from "../../data/languages";
+
+// Buscamos la información de Astro dentro de tu array de datos
+const astroInfo = languages
+    .find((lang) => lang.items.some((item) => item.title === "Astro"))
+    ?.items.find((item) => item.title === "Astro");
+---
+
+<DocsLayout title="Astro">
+    <h1 class="title"><span class="text-astro">Astro</span> Notes</h1>
+    <p class="intro">The web framework for content-driven websites.</p>
+
+    <hr class="divider" />
+
+    <section>
+        <h2>Key Concepts</h2>
+        <ul class="topic-list">
+            {
+                astroInfo?.concepts.map((concept) => (
+                    <li>
+                        <a href={concept.href}>
+                            <h3>{concept.title}</h3>
+                            <p>{concept.desc}</p>
+                        </a>
+                    </li>
+                ))
+            }
+        </ul>
+    </section>
+</DocsLayout>
+
+<style>
+    .text-astro {
+        color: #ff5a03; 
+    }
+
+    .topic-list a:hover {
+        border-color: #ff5a03;
+    }
+</style>
