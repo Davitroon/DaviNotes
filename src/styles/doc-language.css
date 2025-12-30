@@ -48,3 +48,10 @@
 	font-size: 0.9rem;
 }
 
+.doc-img {
+	text-align: center;
+}
+
+.doc-img img {
+	width: 90%;
+}
