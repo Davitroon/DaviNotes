@@ -52,11 +52,17 @@ const isActive = (href: string) => {
 <style>
 	/* === SIDEBAR === */
 	.sidebar {
-background: #13151a;
-    border-right: 1px solid rgba(255, 255, 255, 0.1);
-    padding: 2rem;
-    display: flex;
-    flex-direction: column;
+		background: #13151a;
+		border-right: 1px solid rgba(255, 255, 255, 0.1);
+		padding: 2rem;
+
+		display: flex;
+		flex-direction: column;
+
+		position: sticky;
+		top: 0;
+		height: 100vh;
+		overflow-y: auto;
 	}
 
 	.logo {
