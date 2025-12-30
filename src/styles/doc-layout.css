@@ -11,13 +11,13 @@
 
 .page-content {
     max-width: 1200px;
-    margin: 0 auto;
+    margin: auto;
     padding: 3rem;
     line-height: 1.6;
+    min-height: 73.5vh;
 }
 
 .content-area {
-    min-height: 100vh;
     margin-top: 0px;
 }
 

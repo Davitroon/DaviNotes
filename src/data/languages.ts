@@ -1,4 +1,8 @@
-export type DifficultyLevel = "Fundamental" | "Beginner" | "Intermediate" | "Advanced";
+export type DifficultyLevel =
+	| "Fundamental"
+	| "Beginner"
+	| "Intermediate"
+	| "Advanced";
 
 export interface Category {
 	category: string;
@@ -106,6 +110,32 @@ export const languages: Category[] = [
 						title: "Markdown Content",
 						desc: "Generate pages automatically from Markdown files or content collections.",
 						href: "/astro/markdown-content",
+					},
+				],
+			},
+			{
+				title: "React",
+				desc: "A powerful library for building reusable and interactive components",
+				color: "#61dafb",
+				href: "/react",
+				icon: "⚛️",
+				difficulty: "Intermediate",
+				prerequisites: ["HTML", "CSS", "JavaScript"],
+				concepts: [
+					{
+						title: "Fundamentals",
+						desc: "Understanding one-way data flow and how components manage their own state.",
+						href: "/react/fundamentals",
+					},
+					{
+						title: "Hooks",
+						desc: "Managing side effects and logic with useState and useEffect.",
+						href: "/react/hooks",
+					},
+					{
+						title: "Context API",
+						desc: "Sharing global data without prop drilling between components.",
+						href: "/react/context",
 					},
 				],
 			},

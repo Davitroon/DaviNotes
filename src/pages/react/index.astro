@@ -1,0 +1,80 @@
+---
+import DocsLayout from "../../layouts/DocsLayout.astro";
+import InfoBox from "../../components/InfoBox.astro";
+import { languages } from "../../data/languages";
+
+const reactInfo = languages
+	.find((lang) => lang.items.some((item) => item.title === "React"))
+	?.items.find((item) => item.title === "React");
+---
+
+<DocsLayout title="React">
+	<h1 class="title"><span class="text-react">React</span> Notes</h1>
+	<p class="intro">
+		Versatile language ideal for scripting, data science, and backend.
+	</p>
+
+	<InfoBox
+		difficulty={reactInfo?.difficulty}
+		prerequisites={reactInfo?.prerequisites}
+	/>
+
+	<hr class="divider" />
+
+	<section>
+		<h2>Key Concepts</h2>
+		<ul class="topic-list">
+			{
+				reactInfo?.concepts.map((concept) => (
+					<li>
+						<a href={concept.href}>
+							<h3>{concept.title}</h3>
+							<p>{concept.desc}</p>
+						</a>
+					</li>
+				))
+			}
+		</ul>
+	</section>
+
+	<hr class="divider" />
+
+	<section class="install-section">
+		<div class="cta-container">
+			<h2>Ready to start building?</h2>
+			<p>Follow the complete setup process in our dedicated guide.</p>
+
+			<a
+				href="/react/installation-guide"
+				class="install-btn"
+				title="See React's installation guide"
+			>
+				Installation Guide <span>&rarr;</span>
+			</a>
+		</div>
+	</section>
+</DocsLayout>
+
+<style>
+	:root {
+		--react-color: #61dafb;
+		--react-color-dark: #4fb2ce;
+	}
+
+	.text-react {
+		color: var(--react-color);
+	}
+
+	.topic-list a:hover {
+		border-color: var(--react-color);
+	}
+
+	.install-btn {
+		background-color: var(--react-color);
+        color: black;
+	}
+
+	.install-btn:hover {
+		background-color: var(--react-color-dark);
+	}
+</style>

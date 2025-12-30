@@ -2,7 +2,8 @@
 import { ClientRouter } from "astro:transitions";
 import SideBar from "../components/SideBar.astro";
 import ScrollToTop from "../components/ScrollToTop.astro";
-import Breadcrumbs from "../components/Breadcrumbs.astro"; // <--- Importamos
+import Breadcrumbs from "../components/Breadcrumbs.astro";
+import Footer from "../components/Footer.astro";
 import "../styles/global.css";
 import "../styles/doc-layout.css";
 import { languages } from "../data/languages";
@@ -34,13 +35,15 @@ const currentPath = Astro.url.pathname;
                         </button>
 
                         <Breadcrumbs /> 
-                        
                     </div>
                 </header>
 
                 <div class="page-content">
                     <slot />
                 </div>
+
+                <Footer />
+                
             </main>
         </div>
 
