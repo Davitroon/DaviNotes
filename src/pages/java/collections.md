@@ -211,7 +211,7 @@ Java offers a vast ecosystem of data structures beyond what we have covered. The
 
 <div class="doc-img">
 
-![Java Collections Hierarchy](/images/java-collections.png "Image credit: akcoding.com")
+![Java Collections Hierarchy](/images/java-collections.webp "Image credit: akcoding.com")
 
 
 
