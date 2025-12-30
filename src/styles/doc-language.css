@@ -47,3 +47,38 @@
 	color: #888;
 	font-size: 0.9rem;
 }
+
+/* Estilos para reemplazar tablas de conceptos */
+.concepts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+    margin: 1.5rem 0;
+}
+
+.concept-card {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    padding: 1rem;
+    transition: transform 0.2s ease;
+}
+
+.concept-card:hover {
+    background: rgba(255, 255, 255, 0.08);
+    transform: translateY(-2px);
+}
+
+.concept-term {
+    display: block;
+    color: #a78bfa; /* Tu color de acento */
+    font-weight: bold;
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+}
+
+.concept-desc {
+    font-size: 0.95rem;
+    color: #cbd5e1;
+    margin: 0;
+}

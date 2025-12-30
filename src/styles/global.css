@@ -165,3 +165,5 @@ aside a::after, header a::after, #content-table a::after {
 aside a:hover::after, header a:hover::after, #content-table a:hover::after {
 	width: 100%;
 }
+
+
