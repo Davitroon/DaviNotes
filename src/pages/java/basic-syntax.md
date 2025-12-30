@@ -5,8 +5,9 @@ title: "Basic Syntax in Java"
 
 # Basic Syntax
 
-Java is a strongly typed language and case sensitive. All code must be inside a class.  
-Unlike languages like **Python** or **JavaScript**, Java requires explicit type declarations, enforces class-based structure, and does not allow free-floating functions outside classes.
+Java is a strongly typed, case-sensitive language where object-oriented principles are enforced. Unlike loosely typed languages like **Python** or **JavaScript**, Java requires explicit type declarations and a strict class-based structure.
+
+All executable code in Java must reside inside a **Class**. There are no "free-floating" functions; everything belongs to an object or a class blueprint.
 
 ---
 
@@ -14,28 +15,28 @@ Unlike languages like **Python** or **JavaScript**, Java requires explicit type 
 
 <div id="content-table">
 
-- [1. “Hello World” Structure](#hello-world "Learn the basic Java program structure")
-- [2. Variables and Data Types](#variables-data-types "Overview of Java primitive and reference types")
-- [3. Control Structures](#control-structures "Learn how to control program flow in Java")
-  - [3.1 Conditional Statements](#conditional-statements "Using if and else statements")
-  - [3.2 Switch Statement](#switch-statement "Selecting code blocks based on a variable")
-  - [3.3 Loops](#loops "Repeating code blocks with for or while loops")
-    - [A) For Loop](#for-loop "Loop when number of iterations is known")
-    - [B) While Loop](#while-loop "Loop while a condition is true")
-- [4. Logical Operators](#logical-operators "Combining or negating boolean expressions")
+- [1. “Hello World” Structure](#1-hello-world "Learn the basic Java program structure")
+- [2. Variables and Data Types](#2-variables-data-types "Overview of Java primitive and reference types")
+- [3. Control Structures](#3-control-structures "Learn how to control program flow in Java")
+  - [3.1 Conditional Statements](#31-conditional-statements "Using if and else statements")
+  - [3.2 Switch Statement](#32-switch-statement "Selecting code blocks based on a variable")
+  - [3.3 Loops](#33-loops "Repeating code blocks with for or while loops")
+    - [A) For Loop](#a-for-loop "Loop when number of iterations is known")
+    - [B) While Loop](#b-while-loop "Loop while a condition is true")
+- [4. Logical Operators](#4-logical-operators "Combining or negating boolean expressions")
 
 </div>
-
 
 ---
 
 ## 1. “Hello World” Structure
 
-This example illustrates the fundamental structure of a Java program, where all code is organized into classes and execution starts from the `main` method.
+Every Java application has an entry point called the `main` method. This example illustrates the skeleton of any Java program.
 
 ```java
 
     public class Main {
+        // The entry point of the application
         public static void main(String[] args) {
             System.out.println("Hello World!");
         }
@@ -44,28 +45,50 @@ This example illustrates the fundamental structure of a Java program, where all 
 
 ```
 
+**Key Components**:
+
+- `class Main`: Defines the blueprint. The file name must match this class name (e.g., `Main.java`).
+
+- `public static void main`: The specific method signature the Java Virtual Machine (JVM) looks for to start the program.
+
+- `System.out.println`: The standard command to print text to the console.
+
 ---
 
 ## 2. Variables and Data Types
 
-There are primitive types and reference types (objects).
+Java handles data in two ways: **Primitive Types** (store simple values directly) and **Reference Types** (store addresses to complex objects).
 
-- **int**: Whole numbers (ej: `10`, `-5`)
+**Primitive Types**
 
-- **double**: Decimals (ej: `5.99`)
+These are the building blocks of data in Java.
 
-- **boolean**: Logical values (`true`, `false`)
+- `int`: Whole numbers (e.g., `10`, `-5`).
 
-- **char**: A single character (ej: `'A'`)
+- `double`: Decimal numbers (e.g., `5.99`).
 
-- **String**: Text string (ej: `"Hello"`)
+- `boolean`: True or false values (logic).
+
+- `char`: A single Unicode character (e.g., `'A'`).
+
+**Reference Types**
+
+- `String`: A sequence of characters. Unlike primitives, Strings are objects and have methods (like `.length()` or `.toUpperCase()`).
+
+- `Class`: Any created class
+
+Example
 
 ```java
 
+    // Primitives
     int age = 25;
     double price = 19.99;
     boolean isDeveloper = true;
-    String name = "David";
+    char grade = 'A';
+
+    // Reference Type
+    String name = "David"; // Stored in the Heap memory
 
 
 ```
@@ -74,7 +97,7 @@ There are primitive types and reference types (objects).
 
 ## 3. Control Structures
 
-Control structures define the flow of execution in a Java program, allowing the code to make decisions, repeat actions, or execute different blocks based on conditions.
+Control structures determine the direction of the program execution based on decisions and loops.
 
 ### 3.1 Conditional Statements
 
@@ -82,12 +105,16 @@ Conditional statements allow the program to execute different blocks of code dep
 
 ```java
 
-    int x = 10;
+    int age = 21;
 
-    if (x > 5) {
-        System.out.println("x is greater than 5");
+    if (age > 80) {
+        System.out.println("You're too old to ride the roller coaster");
+
+    } else if (age < 14>) {
+        System.out.println("You're too young to ride the roller coaster");
+    
     } else {
-        System.out.println("x is 5 or less");
+        System.out.println("Everything is fine, have fun!");
     }
 
 
@@ -95,7 +122,7 @@ Conditional statements allow the program to execute different blocks of code dep
 
 ### 3.2 Switch Statement
 
-The `switch` statement selects one of many code blocks to execute based on the value of a variable.
+The `switch` statement selects one of many code blocks to execute based on the value of a variable. It is often cleaner than using many `else if` statements.
 
 ```java
 
@@ -105,9 +132,11 @@ The `switch` statement selects one of many code blocks to execute based on the v
         case 1:
             System.out.println("Monday");
             break;
+
         case 2:
             System.out.println("Tuesday");
             break;
+
         default:
             System.out.println("Another day");
     }
@@ -125,8 +154,9 @@ The `for` loop is used when the number of iterations is known in advance.
 
 ```java
 
+    // Syntax: for (initialization; condition; update)
     for (int i = 0; i < 5; i++) {
-        System.out.println(i);
+        System.out.println("Iteration: " + i);
     }
 
 
@@ -134,7 +164,7 @@ The `for` loop is used when the number of iterations is known in advance.
 
 #### B) While Loop
 
-The `while` loop repeats a block of code as long as a specified condition remains true.
+The `while` loop loops through a block of code as long as a specified condition is `true`. Use this when the number of iterations is unknown.
 
 ```java
 
@@ -142,7 +172,7 @@ The `while` loop repeats a block of code as long as a specified condition remain
 
     while (i < 5) {
         System.out.println(i);
-        i++;
+        i++; // Don't forget to increment, or the loop will never end!
     }
 
 
@@ -154,19 +184,20 @@ The `while` loop repeats a block of code as long as a specified condition remain
 
 Logical operators are used to combine, evaluate, or negate boolean expressions (`true` or `false`) in Java, and are commonly used in control structures such as `if`, `while`, or `for` to make decisions based on multiple conditions.
 
-| Operator | Description | Example              |
-| -------- | ----------- | -------------------- |
-| `&&`     | AND (Y)     | `x < 5 && x < 10`    |
-| `\|\|`   | OR (O)      | `x < 5 \|\| x < 10`  |
-| `!`      | NOT (No)    | `!(x < 5 && x < 10)` |
+| Operator | Description | Example |
+| :--- | :--- | :--- |
+| `&&` (AND) | Returns `true` only if **both** statements are true. | `x < 5 && x < 10` |
+| `\|\|` (OR) | Returns `true` if **at least one** of the statements is true. | `x < 5 \|\| x < 10` |
+| `!` (NOT) | Reverses the result, returns `false` if the result is true. | `!(x < 5 && x < 10)` |
 
 ```java
 
     int age = 20;
-    boolean hasPermission = true;
+    boolean hasTicket = true;
 
-    if (age >= 18 && hasPermission) {
-        System.out.println("Acceso permitido");
+    // Both conditions must be true to enter
+    if (age >= 18 && hasTicket) {
+        System.out.println("Access granted");
     }
 
 

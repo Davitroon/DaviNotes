@@ -26,24 +26,12 @@ Object-Oriented Programming is the core paradigm of Java. Unlike procedural prog
 
 A **Class** is the blueprint or prototype from which objects are created. It represents the set of properties or methods that are common to all objects of one type. An **Object** is a specific instance of a class with actual values.
 
-<div class="concepts-grid">
-  <div class="concept-card">
-    <span class="concept-term">Class</span>
-    <p class="concept-desc">The logical template (e.g., "Car"). It defines the structure.</p>
-  </div>
-  <div class="concept-card">
-    <span class="concept-term">Object</span>
-    <p class="concept-desc">The physical instance created from the class (e.g., "That Red Toyota").</p>
-  </div>
-  <div class="concept-card">
-    <span class="concept-term">Attribute</span>
-    <p class="concept-desc">Variables within a class that represent the state (e.g., color, speed).</p>
-  </div>
-  <div class="concept-card">
-    <span class="concept-term">Method</span>
-    <p class="concept-desc">Functions within a class that represent behavior (e.g., startEngine).</p>
-  </div>
-</div>
+| Concept | Description |
+| :--- | :--- |
+| **Class** | The logical template (e.g., "Car"). It defines the structure. |
+| **Object** | The physical instance created from the class (e.g., "That Red Toyota"). |
+| **Attribute** | Variables within a class that represent the state (e.g., color, speed). |
+| **Method** | Functions within a class that represent behavior (e.g., `startEngine`). |
 
 ### Example
 

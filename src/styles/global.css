@@ -167,3 +167,26 @@ aside a:hover::after, header a:hover::after, #content-table a:hover::after {
 }
 
 
+/* Añadir en styles/global.css */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+    font-size: 0.95rem;
+}
+
+th, td {
+    padding: 0.75rem 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    text-align: left;
+}
+
+th {
+    background-color: rgba(255, 255, 255, 0.05);
+    color: #a78bfa; /* Tu color de acento */
+    font-weight: 600;
+}
+
+tr:hover {
+    background-color: rgba(255, 255, 255, 0.02);
+}
