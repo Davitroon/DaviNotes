@@ -38,6 +38,7 @@ The simplest way to create a page is to add a `.md` file to your `src/pages/` di
     This is my first Markdown page in Astro.
     It will be accessible at `mysite.com/welcome`.
 
+
 ```
 
 Astro comes with built-in support for GitHub Flavored Markdown, meaning features like tables and code blocks work out of the box.
@@ -62,6 +63,7 @@ Crucially, you can use the special `layout` property in the frontmatter to wrap 
     # Introduction
     
     This content will be injected into the `<slot />` of the BlogPostLayout.
+
 
 ```
 
