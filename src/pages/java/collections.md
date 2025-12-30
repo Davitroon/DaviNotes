@@ -31,17 +31,24 @@ Before diving into the Collections Framework, it is crucial to understand the al
 
 ### A) Arrays
 
-An array is a container object that holds a fixed number of values of a single type.
+An array is a container object that holds a fixed number of values of a single type.  
 
-Extremely **fast** due to contiguous memory and low overhead, but **fixed in size** (you cannot add more elements once created). Unlike Python (`list`) or JavaScript (`[]`), which have dynamic arrays by default, in Java an `int[]` is static; for dynamic resizing, you must use `ArrayList`.
+- **Pros:** Extremely fast due to contiguous memory and low overhead.  
+- **Cons:** Fixed in size (you cannot add more elements once created).  
+
+Unlike Python (`list`) or JavaScript (`[]`), which have dynamic arrays by default, in Java an `int[]` is static; for dynamic resizing, you must use `ArrayList`.
 
 
 ```java
 
-    // Standard Array (Fixed size of 5)
-    int[] numbers = new int[5];
-    numbers[0] = 10;
-    // numbers.add(20); // ERROR: Cannot add elements, only overwrite.
+    public class Main {
+        public static void main(String[] args) {
+            // Standard Array (Fixed size of 5)
+            int[] numbers = new int[5];
+            numbers[0] = 10;
+            // numbers.add(20); // ERROR: Cannot add elements, only overwrite.
+        }
+    }
 
 
 ```
@@ -112,8 +119,8 @@ These define _how_ elements are added and removed.
 
 Part of the Collections Framework. It wraps a standard array but handles resizing automatically. It is more similar to Python and JavaScript lists.
 
-- **Best for:** Reading data (access by index `get(i)` is instant).
-- **Worst for:** Inserting data in the middle (requires shifting all subsequent elements).
+- **Pros:** Reading data (access by index `get(i)` is instant).
+- **Cons:** Inserting data in the middle (requires shifting all subsequent elements).
 
 ```java
 
@@ -140,11 +147,10 @@ Part of the Collections Framework. It wraps a standard array but handles resizin
 
 ## 3. HashMap
 
-Stores data in pairs. It uses a hashing function to map keys to specific buckets in memory, making retrieval incredibly fast, regardless of the data size.
+Stores data in key-value pairs, using a hashing function to map keys to specific buckets in memory, which makes retrieval extremely fast, similar to `std::unordered_map` in C++.  
 
-- **Key:** Unique identifier (e.g., ID, Username).
-- **Value:** The actual object.
-- **Java vs C++:** Similar to `std::unordered_map` in C++.
+- **Pros:** Fast lookups by key regardless of the data size.  
+- **Cons:** Does not maintain any order of elements, and hash collisions can slightly degrade performance.
 
 ```java
 

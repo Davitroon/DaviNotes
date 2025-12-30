@@ -15,7 +15,7 @@ All executable code in Java must reside inside a **Class**. There are no "free-f
 
 <div id="content-table">
 
-- [1. “Hello World” Structure](#1-hello-world "Learn the basic Java program structure")
+- [1. Structure](#1-structure "Learn the basic Java program structure")
 - [2. Variables and Data Types](#2-variables-data-types "Overview of Java primitive and reference types")
 - [3. Control Structures](#3-control-structures "Learn how to control program flow in Java")
   - [3.1 Conditional Statements](#31-conditional-statements "Using if and else statements")
@@ -29,7 +29,7 @@ All executable code in Java must reside inside a **Class**. There are no "free-f
 
 ---
 
-## 1. “Hello World” Structure
+## 1. Structure
 
 Every Java application has an entry point called the `main` method. This example illustrates the skeleton of any Java program.
 
