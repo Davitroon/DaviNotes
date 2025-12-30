@@ -18,7 +18,7 @@ Python focuses on simplicity, using Indentation to define the structure and hier
 - [1. Structure](#1-structure "Learn about indentation and Python code structure")
 - [2. Variables](#2-variables "Overview of Python variables")
 - [3. Operators](#3-operators "Arithmetic, logical and comparison operators in Python")
-- [44. Control Structures](#4-control-structures "Manage program flow using conditions and loops")
+- [4. Control Structures](#4-control-structures "Manage program flow using conditions and loops")
   - [4.1 Conditional Statements](#41-conditional-statements "Using if, elif and else statements")
   - [4.2 Loops](#42-loops "Repeating code blocks using for or while loops")
     - [A) For Loops](#a-for-loops "Iterate over sequences or ranges of numbers")
