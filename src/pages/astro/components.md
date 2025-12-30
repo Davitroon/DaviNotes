@@ -19,7 +19,9 @@ Astro components use the `.astro` file extension and combine a **Component Scrip
 
 - [1. Component Structure](#1-component-structure "Learn the anatomy of an .astro file")
 - [2. Props](#2-props "Passing data to components")
-- [3. Slots](#3-slots "Injecting child content into components")
+- [3. Layouts & Slots](#3-layouts-slots "Injecting child content into components")
+  - [3.1 Creating a Layout](#31-creating-a-layout "How to create reusable layouts in Astro")
+  - [3.2 Named Slots](#32-named-slots "Injecting content into specific areas of a layout")
 - [4. UI Frameworks](#4-ui-frameworks "Using React, Vue, or Svelte in Astro")
   - [4.1 Importing Components](#41-importing-components "How to use framework components")
   - [4.2 Hydration Directives](#42-hydration-directives "Making components interactive")
@@ -91,40 +93,95 @@ You can also define a TypeScript interface to enforce type safety for your props
 
 ---
 
-## 3. Slots
+## 3. Layouts & Slots
 
-Slots are placeholders that allow you to inject HTML content (children) from a parent component into a specific place within a child component. This is essential for creating wrapper components like Layouts, Cards, or Modals.
+Layouts are Astro components used to provide a reusable UI structure, such as a header, navigation bar, and footer. They are typically used to wrap pages to ensure a consistent look across the website.
 
-**Defining a Slot**:
+Layouts and Slots work together: The **Layout** defines the shell, and the **Slot** defines where the specific page content is injected.
+
+### 3.1 Creating a Layout
+
+A layout is just a standard Astro component (usually saved in `src/layouts/`). It contains the `<html>`, `<head>`, and `<body>` tags.
+
+The special `<slot />` element acts as a placeholder. When you use the layout on a page, the content of that page is inserted exactly where the `<slot />` tag is placed.
 
 ```astro
 
     ---
-    // Wrapper.astro
+    // src/layouts/MainLayout.astro
+    const { title } = Astro.props;
     ---
-    <div class="wrapper-style">
-        <slot />
-    </div>
+    
+    <html lang="en">
+      <head>
+        <meta charset="utf-8" />
+        <title>{title}</title>
+      </head>
+      <body>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/about">About</a>
+        </nav>
+    
+        <main>
+            <slot />
+        </main>
+    
+        <footer>
+            <p>© 2024 My Website</p>
+        </footer>
+      </body>
+    </html>
 
 
 ```
 
-**Using the Slot**:
+To use a layout, import it into your page component and wrap your content inside it. Everything inside the layout tags is passed to the `<slot />`.
 
 ```astro
 
-    <Wrapper>
-        <p>This content goes inside the slot!</p>
-    </Wrapper>
+    ---
+    // src/pages/index.astro
+    import MainLayout from '../layouts/MainLayout.astro';
+    ---
+    
+    <MainLayout title="Welcome to Astro">
+        <h1>Hello, World!</h1>
+        <p>This paragraph will appear inside the 'main' tag of the layout.</p>
+    </MainLayout>
 
 
 ```
-You can also use **Named Slots** when you need to inject content into multiple specific locations within a component (e.g., a header and a footer).
+
+### 3.2 Named Slots
+
+Sometimes you need to inject content into multiple specific places in a layout, not just one. For example, you might want to add a specific `<meta>` tag to the `<head>` only on one page.
+
+You can use the `name` attribute to define specific zones.
+
+**In the Layout:**
 
 ```astro
 
-    <slot name="header" />
-    <slot /> ---
+    <head>
+        <slot name="head" />
+    </head>
+    <body>
+        <slot /> </body>
+
+
+```
+**In the Page:**
+
+```astro
+
+    <MainLayout title="Special Page">
+        
+        <meta slot="head" name="description" content="My page description" />
+        
+        <h1>This is the body content</h1>
+        
+    </MainLayout>
 
 
 ```

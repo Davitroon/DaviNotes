@@ -93,9 +93,9 @@ export const languages: Category[] = [
 						href: "/astro/pages-routing",
 					},
 					{
-						title: "Layouts & Slots",
-						desc: "Organize pages using layouts and pass content to components via slots.",
-						href: "/astro/layouts-slots",
+						title: "Markdown Content",
+						desc: "Generate pages automatically from Markdown files or content collections.",
+						href: "/astro/markdown-content",
 					},
 				],
 			},
