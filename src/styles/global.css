@@ -57,7 +57,8 @@ main {
 }
 
 .tech-section {
-	margin-bottom: 4rem;
+	width: 55vw;
+	margin: auto;
 }
 
 .section-title {
@@ -117,12 +118,12 @@ p {
    Card & Grid Layouts
    ================================ */
 .link-card-grid {
-	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(24ch, 1fr));
-	gap: 1.5rem;
-	padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(24ch, 1fr));
+    justify-content: center;
+    gap: 1.5rem;
+    padding: 0;
 }
-
 .link-card-grid h2 {
 	margin: 0;
 	display: flex;
