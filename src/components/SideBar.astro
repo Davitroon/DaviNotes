@@ -20,7 +20,7 @@ const isActive = (href: string) => {
 		<ul class="nav-list">
 			<li>
 				<a href="/" class={isActive("/") ? "active" : ""}>
-					<span class="icon">🏠</span> Inicio
+					<span class="icon">🏠</span> Home
 				</a>
 			</li>
 
@@ -55,12 +55,14 @@ const isActive = (href: string) => {
 		background: #13151a;
 		border-right: 1px solid rgba(255, 255, 255, 0.1);
 		padding: 2rem;
-		height: 100vh;
-		position: sticky;
-		top: 0;
+
 		display: flex;
 		flex-direction: column;
-		overflow-y: auto; /* Permite scroll si hay muchos items */
+
+		position: sticky;
+		top: 0;
+		height: 100vh;
+		overflow-y: auto;
 	}
 
 	.logo {
@@ -71,12 +73,10 @@ const isActive = (href: string) => {
 		padding-left: 0.5rem;
 	}
 
-	/* Grupo de navegación */
 	.nav-group {
-		margin-top: 1.5rem; /* Separación entre categorías */
+		margin-top: 1.5rem;
 	}
 
-	/* Título de la categoría */
 	.nav-title {
 		font-size: 0.75rem;
 		text-transform: uppercase;
@@ -87,7 +87,6 @@ const isActive = (href: string) => {
 		font-weight: 600;
 	}
 
-	/* Reset de listas */
 	.nav-list {
 		list-style: none;
 		padding: 0;

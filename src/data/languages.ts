@@ -17,14 +17,14 @@ export const languages: Category[] = [
 		items: [
 			{
 				title: "Java",
-				desc: "POO, Streams y Spring Boot",
+				desc: "POO, Streams and Spring Boot",
 				color: "#f89820",
 				href: "/java",
 				icon: "☕",
 			},
 			{
 				title: "Python",
-				desc: "Scripts, Data y Backend",
+				desc: "Scripts, Data and Backend",
 				color: "#3776ab",
 				href: "/python",
 				icon: "🐍",

@@ -9,13 +9,16 @@ html {
 	font-family: system-ui, sans-serif;
 	background: var(--dark-bg);
 	color: var(--text-color);
+	scroll-behavior: smooth;
 }
+
 body {
 	margin: 0;
 	min-height: 100vh;
 	display: flex;
 	flex-direction: column;
 }
+
 main {
 	margin: auto;
 	padding: 1rem;
@@ -46,6 +49,10 @@ h1 {
 	font-weight: 700;
 	line-height: 1;
 	margin-bottom: 0.5em;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  scroll-margin-top: 70px; 
 }
 
 .text-gradient {
@@ -93,11 +100,9 @@ nav li {
 
 nav a {
 	display: flex;
-	align-items: center;
 	gap: 10px;
 	padding: 0.5rem 1rem;
-	color: #a1a1aa;
-	text-decoration: none;
+	color: #a1a1aa !important; 
 	border-radius: 8px;
 	transition: all 0.2s;
 	font-size: 0.95rem;
@@ -105,19 +110,17 @@ nav a {
 
 nav a:hover {
 	background: rgba(255, 255, 255, 0.05);
-	color: white;
+	color: white !important;
 }
 
 nav a.active {
 	background: rgba(136, 58, 234, 0.15);
-	color: #a78bfa;
+	color: #a78bfa !important;
 	border-left: 3px solid #a78bfa;
 }
 
-h2 {
+.link-card-grid h2 {
 	margin: 0;
-	font-size: 1.25rem;
-	transition: color 0.6s cubic-bezier(0.22, 1, 0.36, 1);
 	display: flex;
 	justify-content: space-between;
 }
@@ -128,7 +131,62 @@ p {
 	color: #a1a1aa;
 }
 
-h2 span {
-	display: inline-block;
-	transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+nav a, header a, #content-table a {
+	color: #ffffff; 
+	font-weight: 500; 
+	text-decoration: none;
+	position: relative; 
+	transition: 0.3s ease;
+	font-weight: bold;
+}
+
+/* Visited links */
+#content-table a:visited {
+	color: #888888; 
+}
+
+/* Hover effect */
+#content-table a:hover {
+	color: #a78bfa;
+}
+
+/* Underline animation */
+aside a::after, header a::after, #content-table a::after {
+	content: "";
+	position: absolute;
+	width: 0;
+	height: 2px;
+	bottom: -2px;
+	left: 0;
+	background-color: #a78bfa;
+	transition: width 0.3s ease;
+}
+
+aside a:hover::after, header a:hover::after, #content-table a:hover::after {
+	width: 100%;
+}
+
+
+/* Añadir en styles/global.css */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+    font-size: 0.95rem;
+}
+
+th, td {
+    padding: 0.75rem 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    text-align: left;
+}
+
+th {
+    background-color: rgba(255, 255, 255, 0.05);
+    color: #a78bfa; /* Tu color de acento */
+    font-weight: 600;
+}
+
+tr:hover {
+    background-color: rgba(255, 255, 255, 0.02);
 }
