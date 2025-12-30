@@ -36,14 +36,44 @@ const pythonInfo = languages
 			}
 		</ul>
 	</section>
+
+	<hr class="divider" />
+
+	<section class="install-section">
+		<div class="cta-container">
+			<h2>Ready to start building?</h2>
+			<p>Follow the complete setup process in our dedicated guide.</p>
+
+			<a
+				href="/python/installation-guide"
+				class="install-btn"
+				title="See Python's installation guide"
+			>
+				Installation Guide <span>&rarr;</span>
+			</a>
+		</div>
+	</section>
 </DocsLayout>
 
 <style>
+	:root {
+		--python-color: #3776ab;
+		--python-color-dark: #295981;
+	}
+
 	.text-python {
-		color: #3776ab;
+		color: var(--python-color);
 	}
 
 	.topic-list a:hover {
-		border-color: #3776ab;
+		border-color: var(--python-color);
+	}
+
+	.install-btn {
+		background-color: var(--python-color);
+	}
+
+	.install-btn:hover {
+		background-color: var(--python-color-dark);
 	}
 </style>

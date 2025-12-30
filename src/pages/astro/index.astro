@@ -34,14 +34,45 @@ const astroInfo = languages
 			}
 		</ul>
 	</section>
+
+	<hr class="divider" />
+
+	<section class="install-section">
+		<div class="cta-container">
+			<h2>Ready to start building?</h2>
+			<p>Follow the complete setup process in our dedicated guide.</p>
+
+			<a
+				href="/astro/installation-guide"
+				class="install-btn"
+				title="See Astro's installation guide"
+			>
+				Installation Guide <span>&rarr;</span>
+			</a>
+		</div>
+	</section>
 </DocsLayout>
 
 <style>
+	:root {
+		--astro-color: #ff5a03;
+		--astro-color-dark: #c74200;
+	}
+
 	.text-astro {
-		color: #ff5a03;
+		color: var(--astro-color);
 	}
 
 	.topic-list a:hover {
-		border-color: #ff5a03;
+		border-color: var(--astro-color);
+	}
+
+	.install-btn {
+		background-color: var(--astro-color);
+		color: black;
+	}
+
+	.install-btn:hover {
+		background-color: var(--astro-color-dark);
 	}
 </style>
