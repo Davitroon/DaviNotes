@@ -3,7 +3,7 @@ import { ClientRouter } from "astro:transitions";
 import SideBar from "../components/SideBar.astro";
 import ScrollToTop from "../components/ScrollToTop.astro";
 import "../styles/global.css";
-import "../styles/doc-language.css";
+import "../styles/doc-layout.css";
 import { languages } from "../data/languages";
 
 interface Props {
@@ -79,87 +79,3 @@ const breadcrumbs = segments.map((segment, index) => {
 		<ScrollToTop />
 	</body>
 </html>
-
-<style>
-	.layout-container {
-		display: grid;
-		grid-template-columns: 250px 1fr;
-		min-height: 100vh;
-		background-color: #0d0f14;
-		color: white;
-	}
-
-	.page-content {
-		max-width: 900px;
-		margin: 0 auto;
-		padding: 3rem;
-		line-height: 1.6;
-	}
-
-	.content-area {
-		min-height: 100vh;
-	}
-
-	.top-bar {
-		position: sticky;
-		top: 0;
-		z-index: 10;
-		padding: 1rem 3rem;
-		border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-		background-color: rgba(13, 15, 20, 0.95); /* Efecto semi-transparente */
-		backdrop-filter: blur(5px);
-	}
-
-	.breadcrumb-container {
-		display: flex;
-		align-items: center;
-		gap: 1.5rem; /* Separamos el botón de los breadcrumbs */
-	}
-
-	.breadcrumb {
-		display: flex;
-		align-items: center;
-		gap: 0.5rem;
-		font-size: 0.9rem;
-	}
-
-	/* Estilo para los enlaces (Padres) */
-	.crumb-link {
-		color: #888;
-		text-decoration: none;
-		transition: color 0.2s ease;
-	}
-
-	.crumb-link:hover {
-		color: #a78bfa; /* Color de acento al pasar el mouse */
-	}
-
-	/* Estilo para el texto actual (Hijo final) */
-	.crumb-text {
-		color: white;
-		font-weight: 500;
-		cursor: default;
-	}
-
-	.separator {
-		color: #444;
-		user-select: none;
-	}
-
-	.back-button {
-		background: transparent;
-		border: 1px solid rgba(255, 255, 255, 0.1);
-		border-radius: 6px;
-		padding: 0.35rem 0.75rem;
-		color: #aaa;
-		cursor: pointer;
-		font-size: 0.85rem;
-		transition: all 0.2s ease;
-	}
-
-	.back-button:hover {
-		color: white;
-		border-color: rgba(255, 255, 255, 0.3);
-		background: rgba(255, 255, 255, 0.05);
-	}
-</style>

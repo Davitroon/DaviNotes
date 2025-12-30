@@ -37,6 +37,7 @@ const { href, title, description, color } = Astro.props;
 		color: white;
 		position: relative;
 		overflow: hidden;
+		transition: all 0.3s ease;
 	}
 
 	.lang-card:hover {
@@ -44,10 +45,6 @@ const { href, title, description, color } = Astro.props;
 		background-image: var(--accent-gradient);
 		box-shadow: 0 0 20px -5px var(--glow-color);
 		transform: translateY(-3px);
-	}
-
-	.lang-card {
-		transition: all 0.3s ease;
 	}
 
 	.content {

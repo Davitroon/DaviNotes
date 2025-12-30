@@ -1,3 +1,6 @@
+/* ================================
+   CSS Variables & Theme Colors
+   ================================ */
 :root {
 	--accent: 136, 58, 234;
 	--accent-light: 224, 204, 250;
@@ -5,6 +8,10 @@
 	--card-bg: #23262d;
 	--text-color: #ffffff;
 }
+
+/* ================================
+   Base Document & Layout
+   ================================ */
 html {
 	font-family: system-ui, sans-serif;
 	background: var(--dark-bg);
@@ -22,11 +29,13 @@ body {
 main {
 	margin: auto;
 	padding: 1rem;
-	width: 800px;
+	width: 100%;
 	max-width: calc(100% - 2rem);
 }
 
-/* Fondo decorativo sutil */
+/* ================================
+   Decorative Background
+   ================================ */
 .background-grid {
 	position: fixed;
 	top: 0;
@@ -39,44 +48,16 @@ main {
 	mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
 }
 
+/* ================================
+   Hero & Section Structure
+   ================================ */
 .hero {
 	text-align: center;
 	margin-bottom: 3rem;
 }
 
-h1 {
-	font-size: 4rem;
-	font-weight: 700;
-	line-height: 1;
-	margin-bottom: 0.5em;
-}
-
-h1, h2, h3, h4, h5, h6 {
-  scroll-margin-top: 70px; 
-}
-
-.text-gradient {
-	background-image: linear-gradient(45deg, #a78bfa, #2dd4bf);
-	background-size: 400%;
-	background-clip: text;
-	-webkit-text-fill-color: transparent;
-}
-
-.subtitle {
-	font-size: 1.25rem;
-	color: #a1a1aa;
-}
-
-.link-card-grid {
-	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(24ch, 1fr));
-	gap: 1.5rem;
-	padding: 0;
-}
-
-/* Estilos nuevos para las secciones */
 .tech-section {
-	margin-bottom: 4rem; /* Espacio entre categorías */
+	margin-bottom: 4rem;
 }
 
 .section-title {
@@ -85,7 +66,6 @@ h1, h2, h3, h4, h5, h6 {
 	margin-bottom: 0rem;
 	padding-bottom: 0rem;
 	display: inline-block;
-	/* Opcional: Icono visual antes del título */
 }
 
 hr {
@@ -93,37 +73,28 @@ hr {
 	margin-bottom: 1.5rem;
 }
 
-/* Enlaces */
-nav li {
-	margin-bottom: 0.25rem;
+/* ================================
+   Headings & Typography
+   ================================ */
+h1 {
+	font-size: 4rem;
+	font-weight: 700;
+	line-height: 1;
+	margin-bottom: 0.5em;
 }
 
-nav a {
-	display: flex !important;
-	gap: 10px;
-	padding: 0.5rem 1rem;
-	color: #a1a1aa !important; 
-	border-radius: 8px;
-	transition: all 0.2s;
-	font-size: 0.95rem;
-	text-decoration: none;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	scroll-margin-top: 70px;
 }
 
-nav a:hover {
-	background: rgba(255, 255, 255, 0.05);
-	color: white !important;
-}
-
-nav a.active {
-	background: rgba(136, 58, 234, 0.15);
-	color: #a78bfa !important;
-	border-left: 3px solid #a78bfa;
-}
-
-.link-card-grid h2 {
-	margin: 0;
-	display: flex;
-	justify-content: space-between;
+.subtitle {
+	font-size: 1.25rem;
+	color: #a1a1aa;
 }
 
 p {
@@ -132,46 +103,86 @@ p {
 	color: #a1a1aa;
 }
 
-nav a, header a, #content-table a, .doc-link{
-	color: #ffffff; 
-	font-weight: 500; 
-	position: relative; 
-	transition: 0.3s ease;
+/* ================================
+   Text Effects
+   ================================ */
+.text-gradient {
+	background-image: linear-gradient(45deg, #a78bfa, #2dd4bf);
+	background-size: 400%;
+	background-clip: text;
+	-webkit-text-fill-color: transparent;
+}
+
+/* ================================
+   Card & Grid Layouts
+   ================================ */
+.link-card-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(24ch, 1fr));
+	gap: 1.5rem;
+	padding: 0;
+}
+
+.link-card-grid h2 {
+	margin: 0;
+	display: flex;
+	justify-content: space-between;
+}
+
+/* ================================
+   Navigation & Links
+   ================================ */
+nav li {
+	margin-bottom: 0.25rem;
+}
+
+nav a {
+	display: flex;
+	gap: 10px;
+	padding: 0.5rem 1rem;
+	color: #a1a1aa;
+	border-radius: 8px;
+	font-size: 0.95rem;
+	text-decoration: none;
 	font-weight: bold;
-	display: inline-block;
+	position: relative;
+	transition: 0.3s ease;
 }
 
-/* Visited links */
-#content-table a:visited, .doc-link:visited {
-	color: #888888; 
+nav a:hover {
+	background: rgba(255, 255, 255, 0.05);
+	color: white;
 }
 
-/* Hover effect */
-#content-table a:hover, .doc-link:hover {
+nav a.active {
+	background: rgba(136, 58, 234, 0.15);
 	color: #a78bfa;
+	border-left: 3px solid #a78bfa;
 }
 
-
-/* Añadir en styles/global.css */
+/* ================================
+   Tables
+   ================================ */
 table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 1.5rem 0;
-    font-size: 0.95rem;
+	width: 100%;
+	border-collapse: collapse;
+	margin: 1.5rem 0;
+	font-size: 0.95rem;
 }
 
-th, td {
-    padding: 0.75rem 1rem;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    text-align: left;
+th,
+td {
+	padding: 0.75rem 1rem;
+	border: 1px solid rgba(255, 255, 255, 0.1);
+	text-align: left;
 }
 
 th {
-    background-color: rgba(255, 255, 255, 0.05);
-    color: #a78bfa; /* Tu color de acento */
-    font-weight: 600;
+	background-color: rgba(255, 255, 255, 0.05);
+	color: #a78bfa;
+	font-weight: 600;
 }
 
 tr:hover {
-    background-color: rgba(255, 255, 255, 0.02);
+	background-color: rgba(255, 255, 255, 0.02);
 }

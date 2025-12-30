@@ -1,0 +1,168 @@
+/* =========================================
+   Layout & Containers
+   ========================================= */
+.layout-container {
+    display: grid;
+    grid-template-columns: 250px 1fr;
+    min-height: 100vh;
+    background-color: #0d0f14;
+    color: white;
+}
+
+.page-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 3rem;
+    line-height: 1.6;
+}
+
+.content-area {
+    min-height: 100vh;
+    margin-top: 0px;
+}
+
+.doc-img {
+    text-align: center;
+}
+
+.doc-img img {
+    width: 90%;
+}
+
+.divider {
+    border: 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    margin: 2rem 0;
+}
+
+/* =========================================
+   Typography & General Elements
+   ========================================= */
+.title {
+    margin-bottom: 0.5rem;
+}
+
+.intro {
+    color: #a1a1aa;
+    font-size: 1.1rem;
+    max-width: 60ch;
+}
+
+/* =========================================
+   Header, Navigation & Breadcrumbs
+   ========================================= */
+.top-bar {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    padding: 1rem 3rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    background-color: rgba(13, 15, 20, 0.95);
+}
+
+.breadcrumb-container {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+}
+
+.crumb-link {
+    color: #888;
+    text-decoration: none;
+}
+
+.crumb-text {
+    color: white;
+    font-weight: 500;
+    cursor: default;
+}
+
+.separator {
+    color: #444;
+    user-select: none;
+}
+
+.back-button {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 6px;
+    padding: 0.35rem 0.75rem;
+    color: #aaa;
+    cursor: pointer;
+    font-size: 0.85rem;
+    transition: all 0.2s ease;
+}
+
+.back-button:hover {
+    color: white;
+    border-color: rgba(255, 255, 255, 0.3);
+    background: rgba(255, 255, 255, 0.05);
+}
+
+/* =========================================
+   Topic List Component
+   ========================================= */
+.topic-list {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    gap: 1rem;
+}
+
+.topic-list a {
+    display: block;
+    padding: 1.5rem;
+    background: #1e2127;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    text-decoration: none;
+    transition: transform 0.2s, border-color 0.2s;
+}
+
+.topic-list a:hover {
+    transform: translateY(-3px);
+}
+
+.topic-list h3 {
+    margin: 0 0 0.5rem 0;
+    color: white;
+}
+
+.topic-list p {
+    margin: 0;
+    color: #888;
+    font-size: 0.9rem;
+}
+
+/* =========================================
+   Shared Link Styles & Interactions
+   ========================================= */
+#content-table a,
+.doc-link {
+    color: #ffffff;
+}
+
+#content-table a:visited,
+.doc-link:visited {
+    color: #888888;
+}
+
+#content-table a:hover,
+.doc-link:hover,
+.crumb-link:hover {
+    color: #a78bfa;
+}
+
+#content-table a,
+.doc-link,
+.crumb-link {
+    font-weight: bold;
+    transition: 0.2s ease;
+}
