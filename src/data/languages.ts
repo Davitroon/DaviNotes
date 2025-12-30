@@ -1,3 +1,5 @@
+export type DifficultyLevel = "Fundamental" | "Beginner" | "Intermediate" | "Advanced";
+
 export interface Category {
 	category: string;
 	items: LanguageItem[];
@@ -9,6 +11,8 @@ export interface LanguageItem {
 	color: string;
 	href: string;
 	icon: string;
+	difficulty: DifficultyLevel;
+	prerequisites: string[];
 	concepts: Concept[];
 }
 
@@ -24,10 +28,12 @@ export const languages: Category[] = [
 		items: [
 			{
 				title: "Java",
-				desc: "POO, Streams and Spring Boot",
+				desc: "Build robust, scalable enterprise applications and backend systems",
 				color: "#f89820",
 				href: "/java",
 				icon: "☕",
+				difficulty: "Intermediate",
+				prerequisites: ["Nothing"],
 				concepts: [
 					{
 						title: "Basic Syntax",
@@ -48,10 +54,12 @@ export const languages: Category[] = [
 			},
 			{
 				title: "Python",
-				desc: "Scripts, Data and Backend",
+				desc: "Versatile language for data science, AI, and web development",
 				color: "#3776ab",
 				href: "/python",
 				icon: "🐍",
+				difficulty: "Beginner",
+				prerequisites: ["Nothing"],
 				concepts: [
 					{
 						title: "Basic Syntax",
@@ -81,6 +89,8 @@ export const languages: Category[] = [
 				color: "#ff5a03",
 				href: "/astro",
 				icon: "🚀",
+				difficulty: "Beginner",
+				prerequisites: ["HTML", "CSS", "Basic JavaScript", "Markdown"],
 				concepts: [
 					{
 						title: "Components",
