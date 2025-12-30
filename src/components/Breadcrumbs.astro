@@ -1,0 +1,68 @@
+---
+const currentPath = Astro.url.pathname;
+const cleanPath = currentPath.replace(/\/$/, "");
+const segments = cleanPath.split("/").filter(Boolean);
+
+const breadcrumbs = segments.map((segment, index) => {
+	const href = "/" + segments.slice(0, index + 1).join("/");
+	const label = segment
+		.replace(/-/g, " ")
+		.replace(/\b\w/g, (char) => char.toUpperCase());
+
+	return { label, href };
+});
+---
+
+<nav class="breadcrumb" aria-label="Breadcrumb">
+	<a href="/" class="crumb-link">Home</a>
+
+	{
+		breadcrumbs.map((crumb, index) => {
+			const isLast = index === breadcrumbs.length - 1;
+
+			return (
+				<>
+					<span class="separator">/</span>
+					{isLast ? (
+						<span class="crumb-text">{crumb.label}</span>
+					) : (
+						<a href={crumb.href} class="crumb-link">
+							{crumb.label}
+						</a>
+					)}
+				</>
+			);
+		})
+	}
+</nav>
+
+<style>
+	.breadcrumb {
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+		font-size: 0.9rem;
+	}
+
+	.crumb-link {
+		color: #888;
+		text-decoration: none;
+		font-weight: bold; 
+		transition: 0.2s ease;
+	}
+
+	.crumb-link:hover {
+		color: #a78bfa;
+	}
+
+	.crumb-text {
+		color: white;
+		font-weight: bold;
+		cursor: default;
+	}
+
+	.separator {
+		color: #444;
+		user-select: none;
+	}
+</style>

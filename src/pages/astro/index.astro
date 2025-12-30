@@ -3,20 +3,18 @@ import DocsLayout from "../../layouts/DocsLayout.astro";
 import InfoBox from "../../components/InfoBox.astro";
 import { languages } from "../../data/languages";
 
-const pythonInfo = languages
-	.find((lang) => lang.items.some((item) => item.title === "Python"))
-	?.items.find((item) => item.title === "Python");
+const astroInfo = languages
+	.find((lang) => lang.items.some((item) => item.title === "Astro"))
+	?.items.find((item) => item.title === "Astro");
 ---
 
-<DocsLayout title="Python">
-	<h1 class="title"><span class="text-python">Python</span> Notes</h1>
-	<p class="intro">
-		Versatile language ideal for scripting, data science, and backend.
-	</p>
+<DocsLayout title="Astro">
+	<h1 class="title"><span class="text-astro">Astro</span> Notes</h1>
+	<p class="intro">The web framework for content-driven websites.</p>
 
 	<InfoBox
-		difficulty={pythonInfo?.difficulty}
-		prerequisites={pythonInfo?.prerequisites}
+		difficulty={astroInfo?.difficulty}
+		prerequisites={astroInfo?.prerequisites}
 	/>
 
 	<hr class="divider" />
@@ -25,7 +23,7 @@ const pythonInfo = languages
 		<h2>Key Concepts</h2>
 		<ul class="topic-list">
 			{
-				pythonInfo?.concepts.map((concept) => (
+				astroInfo?.concepts.map((concept) => (
 					<li>
 						<a href={concept.href}>
 							<h3>{concept.title}</h3>
@@ -45,9 +43,9 @@ const pythonInfo = languages
 			<p>Follow the complete setup process in our dedicated guide.</p>
 
 			<a
-				href="/python/installation-guide"
+				href="/astro/installation-guide"
 				class="install-btn"
-				title="See Python's installation guide"
+				title="See Astro's installation guide"
 			>
 				Installation Guide <span>&rarr;</span>
 			</a>
@@ -57,23 +55,24 @@ const pythonInfo = languages
 
 <style>
 	:root {
-		--python-color: #3776ab;
-		--python-color-dark: #295981;
+		--astro-color: #ff5a03;
+		--astro-color-dark: #c74200;
 	}
 
-	.text-python {
-		color: var(--python-color);
+	.text-astro {
+		color: var(--astro-color);
 	}
 
 	.topic-list a:hover {
-		border-color: var(--python-color);
+		border-color: var(--astro-color);
 	}
 
 	.install-btn {
-		background-color: var(--python-color);
+		background-color: var(--astro-color);
+		color: black;
 	}
 
 	.install-btn:hover {
-		background-color: var(--python-color-dark);
+		background-color: var(--astro-color-dark);
 	}
 </style>

@@ -1,6 +1,6 @@
 ---
 import DocsLayout from "../../layouts/DocsLayout.astro";
-
+import InfoBox from "../../components/InfoBox.astro";
 import { languages } from "../../data/languages";
 
 const javaInfo = languages
@@ -11,6 +11,11 @@ const javaInfo = languages
 <DocsLayout title="Java">
 	<h1 class="title"><span class="text-java">Java</span> Notes</h1>
 	<p class="intro">Robust, cross-platform object-oriented language.</p>
+
+	<InfoBox
+		difficulty={javaInfo?.difficulty}
+		prerequisites={javaInfo?.prerequisites}
+	/>
 
 	<hr class="divider" />
 
@@ -29,14 +34,45 @@ const javaInfo = languages
 			}
 		</ul>
 	</section>
+
+	<hr class="divider" />
+
+	<section class="install-section">
+		<div class="cta-container">
+			<h2>Ready to start building?</h2>
+			<p>Follow the complete setup process in our dedicated guide.</p>
+
+			<a
+				href="/java/installation-guide"
+				class="install-btn"
+				title="See Java's installation guide"
+			>
+				Installation Guide <span>&rarr;</span>
+			</a>
+		</div>
+	</section>
 </DocsLayout>
 
 <style>
+	:root {
+		--java-color: #f7b72e;
+		--java-color-dark: #bd8b20;
+	}
+
 	.text-java {
-		color: #f89820;
+		color: var(--java-color);
 	}
 
 	.topic-list a:hover {
-		border-color: #f89820;
+		border-color: var(--java-color);
+	}
+
+	.install-btn {
+		background-color: var(--java-color);
+		color: black;
+	}
+
+	.install-btn:hover {
+		background-color: var(--java-color-dark);
 	}
 </style>
