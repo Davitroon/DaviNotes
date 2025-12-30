@@ -9,6 +9,7 @@ html {
 	font-family: system-ui, sans-serif;
 	background: var(--dark-bg);
 	color: var(--text-color);
+	scroll-behavior: smooth;
 }
 
 body {
@@ -116,10 +117,8 @@ nav a.active {
 	border-left: 3px solid #a78bfa;
 }
 
-h2 {
+.link-card-grid h2 {
 	margin: 0;
-	font-size: 1.25rem;
-	transition: color 0.6s cubic-bezier(0.22, 1, 0.36, 1);
 	display: flex;
 	justify-content: space-between;
 }
@@ -130,7 +129,37 @@ p {
 	color: #a1a1aa;
 }
 
-h2 span {
-	display: inline-block;
-	transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+a {
+	color: #ffffff; /* texto blanco por defecto */
+	font-weight: 500; /* ligeramente más ligero que bold para mejor lectura */
+	text-decoration: none;
+	position: relative; /* necesario para pseudo-elemento */
+	transition: color 0.3s ease;
+	font-weight: bold;
+}
+
+/* Visited links */
+a:visited {
+	color: #888888; /* gris suave para enlaces visitados */
+}
+
+/* Hover effect */
+a:hover {
+	color: #a78bfa; /* color de acento moderno */
+}
+
+/* Underline animation */
+a::after {
+	content: "";
+	position: absolute;
+	width: 0;
+	height: 2px;
+	bottom: -2px;
+	left: 0;
+	background-color: #a78bfa;
+	transition: width 0.3s ease;
+}
+
+a:hover::after {
+	width: 100%;
 }
