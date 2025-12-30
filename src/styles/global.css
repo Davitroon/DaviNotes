@@ -51,6 +51,10 @@ h1 {
 	margin-bottom: 0.5em;
 }
 
+h1, h2, h3, h4, h5, h6 {
+  scroll-margin-top: 70px; 
+}
+
 .text-gradient {
 	background-image: linear-gradient(45deg, #a78bfa, #2dd4bf);
 	background-size: 400%;
@@ -96,11 +100,9 @@ nav li {
 
 nav a {
 	display: flex;
-	align-items: center;
 	gap: 10px;
 	padding: 0.5rem 1rem;
-	color: #a1a1aa;
-	text-decoration: none;
+	color: #a1a1aa !important; 
 	border-radius: 8px;
 	transition: all 0.2s;
 	font-size: 0.95rem;
@@ -108,12 +110,12 @@ nav a {
 
 nav a:hover {
 	background: rgba(255, 255, 255, 0.05);
-	color: white;
+	color: white !important;
 }
 
 nav a.active {
 	background: rgba(136, 58, 234, 0.15);
-	color: #a78bfa;
+	color: #a78bfa !important;
 	border-left: 3px solid #a78bfa;
 }
 
@@ -129,27 +131,27 @@ p {
 	color: #a1a1aa;
 }
 
-a {
-	color: #ffffff; /* texto blanco por defecto */
-	font-weight: 500; /* ligeramente más ligero que bold para mejor lectura */
+nav a, header a, #content-table a {
+	color: #ffffff; 
+	font-weight: 500; 
 	text-decoration: none;
-	position: relative; /* necesario para pseudo-elemento */
-	transition: color 0.3s ease;
+	position: relative; 
+	transition: 0.3s ease;
 	font-weight: bold;
 }
 
 /* Visited links */
-a:visited {
-	color: #888888; /* gris suave para enlaces visitados */
+#content-table a:visited {
+	color: #888888; 
 }
 
 /* Hover effect */
-a:hover {
-	color: #a78bfa; /* color de acento moderno */
+#content-table a:hover {
+	color: #a78bfa;
 }
 
 /* Underline animation */
-a::after {
+aside a::after, header a::after, #content-table a::after {
 	content: "";
 	position: absolute;
 	width: 0;
@@ -160,6 +162,6 @@ a::after {
 	transition: width 0.3s ease;
 }
 
-a:hover::after {
+aside a:hover::after, header a:hover::after, #content-table a:hover::after {
 	width: 100%;
 }

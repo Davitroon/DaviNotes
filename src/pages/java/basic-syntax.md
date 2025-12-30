@@ -12,15 +12,19 @@ Unlike languages like **Python** or **JavaScript**, Java requires explicit type 
 
 ## Table of Contents
 
-- [1. “Hello World” Structure](#1-hello-world-structure "Learn the basic Java program structure")
-- [2. Variables and Data Types](#2-variables-and-data-types "Overview of Java primitive and reference types")
-- [3. Control Structures](#3-control-structures "Learn how to control program flow in Java")
-  - [3.1 Conditional Statements](#31-conditional-statements "Using if and else statements")
-  - [3.2 Switch Statement](#32-switch-statement "Selecting code blocks based on a variable")
-  - [3.3 Loops](#33-loops "Repeating code blocks with for or while loops")
-    - [A) For Loop](#a-for-loop "Loop when number of iterations is known")
-    - [B) While Loop](#b-while-loop "Loop while a condition is true")
-- [4. Logical Operators](#4-logical-operators "Combining or negating boolean expressions")
+<div id="content-table">
+
+- [1. “Hello World” Structure](#hello-world "Learn the basic Java program structure")
+- [2. Variables and Data Types](#variables-data-types "Overview of Java primitive and reference types")
+- [3. Control Structures](#control-structures "Learn how to control program flow in Java")
+  - [3.1 Conditional Statements](#conditional-statements "Using if and else statements")
+  - [3.2 Switch Statement](#switch-statement "Selecting code blocks based on a variable")
+  - [3.3 Loops](#loops "Repeating code blocks with for or while loops")
+    - [A) For Loop](#for-loop "Loop when number of iterations is known")
+    - [B) While Loop](#while-loop "Loop while a condition is true")
+- [4. Logical Operators](#logical-operators "Combining or negating boolean expressions")
+
+</div>
 
 
 ---
