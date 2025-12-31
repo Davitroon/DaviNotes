@@ -21,10 +21,14 @@ const currentPath = Astro.url.pathname;
   <head>
     <meta charset="UTF-8" />
     <title>{title}</title>
+    {/* Enables Astro's View Transitions for SPA-like navigation */}
     <ClientRouter />
   </head>
   <body>
     <div class="layout-container">
+      {/* 'transition:persist' keeps the Sidebar state (scroll position, open folders)
+        intact while navigating between different documentation pages.
+      */}
       <SideBar
         languages={languages}
         currentPath={currentPath}
@@ -34,11 +38,12 @@ const currentPath = Astro.url.pathname;
       <main class="content-area">
         <header class="top-bar">
           <div class="breadcrumb-container">
+            {/* Mobile Menu Toggle Button (Visible only on small screens via CSS) */}
             <button
               id="menu-toggle"
               class="menu-btn"
-              aria-label="Abrir menú"
-              title="Abrir menú"
+              aria-label="Open menu"
+              title="Open menu"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -57,6 +62,7 @@ const currentPath = Astro.url.pathname;
               </svg>
             </button>
 
+            {/* Native browser history navigation */}
             <button class="back-button" onclick="history.back()">
               <span class="arrow-icon">←</span> Go back
             </button>
@@ -65,6 +71,7 @@ const currentPath = Astro.url.pathname;
           </div>
         </header>
 
+        {/* Main Content Slot */}
         <div class="page-content">
           <slot />
         </div>
@@ -76,13 +83,18 @@ const currentPath = Astro.url.pathname;
     <ScrollToTop />
 
     <script>
-      // Usamos 'astro:page-load' por si usas View Transitions
+      /**
+       * Handles Mobile Menu Logic.
+       * The 'astro:page-load' ensures the script re-runs correctly after every View Transition navigation.
+       */
       document.addEventListener("astro:page-load", () => {
+        // DOM Elements
         const menuBtn = document.getElementById("menu-toggle");
         const sidebar = document.querySelector(".sidebar");
         const overlay = document.querySelector(".sidebar-overlay");
         const closeBtn = document.getElementById("sidebar-close");
 
+        // Actions
         function toggleMenu() {
           sidebar?.classList.toggle("open");
           overlay?.classList.toggle("active");
@@ -93,41 +105,13 @@ const currentPath = Astro.url.pathname;
           overlay?.classList.remove("active");
         }
 
+        // Event Listeners
         menuBtn?.addEventListener("click", toggleMenu);
         closeBtn?.addEventListener("click", closeMenu);
+        
+        // Close menu when clicking the backdrop overlay
         overlay?.addEventListener("click", closeMenu);
       });
     </script>
   </body>
 </html>
-
-<style>
-  /* ESTILOS ESPECÍFICOS DEL BOTÓN MENÚ */
-  .menu-btn {
-    display: none; /* Oculto en escritorio por defecto */
-    background: transparent;
-    border: none;
-    color: #a1a1aa;
-    cursor: pointer;
-    padding: 0.25rem;
-    margin-right: 0.5rem;
-    transition: color 0.2s;
-  }
-
-  .menu-btn:hover {
-    color: white;
-  }
-
-  /* MEDIA QUERY PARA MÓVILES (Menos de 768px) */
-  @media (max-width: 846px) {
-    /* Mostramos el botón menú */
-    .menu-btn {
-      display: flex;
-    }
-
-    /* Cambiamos el grid para que sea de 1 sola columna */
-    .layout-container {
-      grid-template-columns: 1fr !important; /* Forzamos 1 columna */
-    }
-  }
-</style>

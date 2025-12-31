@@ -3,152 +3,218 @@ import type { Category } from "../data/languages";
 import { getSortedCategories } from "../utils/utils";
 
 interface Props {
-  languages: Category[];
-  currentPath: string;
+	languages: Category[];
+	currentPath: string;
 }
 
 const { languages, currentPath } = Astro.props;
 const sortedLanguages = getSortedCategories(languages);
 
+/**
+ * Returns true if the href matches the current path or is a parent route.
+ */
 const isActive = (href: string) => {
-  if (href === "/") return currentPath === "/";
-  return currentPath.startsWith(href);
+	if (href === "/") return currentPath === "/";
+	return currentPath === href || currentPath.startsWith(href + "/");
 };
 ---
 
 <div class="sidebar-overlay"></div>
 
 <aside class="sidebar">
-  <div class="sidebar-header">
-    <div class="logo">Davi<span class="text-gradient">Notes</span></div>
-    
-    <button id="sidebar-close" aria-label="Cerrar menú">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
-    </button>
-  </div>
+	<div class="sidebar-header">
+		<div class="logo">
+			<a href="/" title="Go to home page"
+				>Davi<span class="text-gradient">Notes</span></a
+			>
+		</div>
 
-  <nav class="nav-div" aria-label="Main navigation">
-    <ul class="nav-list">
-      <li>
-        <a href="/" class={isActive("/") ? "active" : ""}>
-          <span class="icon">🏠</span> Home
-        </a>
-      </li>
+		<button id="sidebar-close" aria-label="Cerrar menú">
+			<svg
+				xmlns="http://www.w3.org/2000/svg"
+				width="24"
+				height="24"
+				viewBox="0 0 24 24"
+				fill="none"
+				stroke="currentColor"
+				stroke-width="2"
+				stroke-linecap="round"
+				stroke-linejoin="round"
+			>
+				<line x1="18" y1="6" x2="6" y2="18"></line>
+				<line x1="6" y1="6" x2="18" y2="18"></line>
+			</svg>
+		</button>
+	</div>
 
-      {
-        sortedLanguages.map((category) => (
-          <li class="nav-group">
-            <h3 class="nav-title">{category.category}</h3>
-            <ul class="nav-list">
-              {category.items.map((lenguage) => (
-                <li>
-                  <a
-                    href={lenguage.href}
-                    class={isActive(lenguage.href) ? "active" : ""}
-                  >
-                    <span class="icon">{lenguage.icon}</span>
-                    {lenguage.title}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </li>
-        ))
-      }
-    </ul>
-  </nav>
+	<nav class="nav-div" aria-label="Main navigation">
+		<ul class="nav-list">
+			<li>
+				<a
+					href="/"
+					title="Go to home page"
+					class={isActive("/") ? "active" : ""}
+				>
+					<span class="icon">🏠</span> Home
+				</a>
+			</li>
+
+			{
+				sortedLanguages.map((category) => (
+					<li class="nav-group">
+						<h3 class="nav-title">{category.category}</h3>
+						<ul class="nav-list">
+							{category.items.map((lenguage) => (
+								<li>
+									<a
+										href={lenguage.href}
+										class={isActive(lenguage.href) ? "active" : ""}
+										title={"Go to " + lenguage.title}
+									>
+										<span class="icon">{lenguage.icon}</span>
+										{lenguage.title}
+									</a>
+								</li>
+							))}
+						</ul>
+					</li>
+				))
+			}
+		</ul>
+	</nav>
 </aside>
 
 <style>
-  /* === ESTILOS BASE (DESKTOP) === */
-  .sidebar {
-    background: #13151a;
-    border-right: 1px solid rgba(255, 255, 255, 0.1);
-    padding: 2rem;
-    display: flex;
-    flex-direction: column;
-    position: sticky;
-    top: 0;
-    height: 100vh; /* Cambiado a 100vh para ocupar todo */
-    overflow-y: auto; /* Permitir scroll si la lista es larga */
-    z-index: 100;
-  }
+	/* =========================================
+     Base Sidebar Layout (Desktop)
+     ========================================= */
+	.sidebar {
+		background: #13151a;
+		border-right: 1px solid rgba(255, 255, 255, 0.1);
+		padding: 2rem;
+		display: flex;
+		flex-direction: column;
+		position: sticky;
+		top: 0;
+		height: 100vh;
+		overflow-y: auto;
+		z-index: 100;
+	}
 
-  .sidebar-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      margin-bottom: 2rem;
-  }
+	.sidebar-header {
+		display: flex;
+		justify-content: space-between;
+		align-items: flex-start;
+		margin-bottom: 2rem;
+	}
 
-  .logo {
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: #fff;
-    padding-left: 0.5rem;
-  }
+	/* =========================================
+     Branding & Logo
+     ========================================= */
+	.logo {
+		font-size: 1.5rem;
+		font-weight: bold;
+		color: #fff;
+		padding-left: 0.5rem;
+		transition: 0.2s;
+	}
 
-  #sidebar-close {
-      display: none; /* Oculto en escritorio */
-      background: none;
-      border: none;
-      color: #fff;
-      cursor: pointer;
-  }
+	.logo a {
+		text-decoration: none;
+		transition: 0.3s;
+		color: inherit;
+	}
 
-  .sidebar-overlay {
-      display: none; /* Oculto en escritorio */
-  }
-  
-  /* Resto de tus estilos de navegación... */
-  .nav-group { margin-top: 1.5rem; }
-  .nav-title { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; color: #666; margin-bottom: 0.75rem; padding-left: 1rem; font-weight: 600; }
-  .nav-list { list-style: none; padding: 0; margin: 0; }
+	.logo:hover {
+		transform: scale(1.04);
+	}
 
+	/* =========================================
+     Navigation List Styling
+     ========================================= */
+	.nav-div {
+		width: 100%;
+	}
 
-  /* === ESTILOS RESPONSIVE (MÓVIL) === */
-  @media (max-width: 846px) {
-    
-    /* Fondo Oscuro */
-    .sidebar-overlay {
-        display: block;
-        position: fixed;
-        top: 0; 
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0,0,0,0.5);
-        z-index: 90;
-        opacity: 0;
-        visibility: hidden;
-        transition: 0.3s ease;
-        backdrop-filter: blur(2px);
-    }
+	.nav-list {
+		list-style: none;
+		padding: 0;
+		margin: 0;
+	}
 
-    .sidebar-overlay.active {
-        opacity: 1;
-        visibility: visible;
-    }
+	.nav-group {
+		margin-top: 1.5rem;
+	}
 
-    /* Sidebar como cajón deslizante */
-    .sidebar {
-        position: fixed;
-        top: 0;
-        left: -100%; /* Escondido a la izquierda */
-        width: 80%; /* Ocupa el 80% del móvil */
-        max-width: 300px;
-        height: 100%;
-        transition: left 0.3s ease-in-out;
-        box-shadow: 4px 0 15px rgba(0,0,0,0.5);
-        border-right: none;
-    }
+	.nav-title {
+		font-size: 0.75rem;
+		text-transform: uppercase;
+		letter-spacing: 0.1em;
+		color: #666;
+		margin-bottom: 0.75rem;
+		padding-left: 1rem;
+		font-weight: 600;
+	}
 
-    .sidebar.open {
-        left: 0; /* Aparece */
-    }
+	/* =========================================
+     Mobile Triggers (Hidden on Desktop)
+     ========================================= */
+	#sidebar-close {
+		display: none;
+		background: none;
+		border: none;
+		color: #fff;
+		cursor: pointer;
+	}
 
-    #sidebar-close {
-        display: block; /* Visible en móvil */
-    }
-  }
+	.sidebar-overlay {
+		display: none;
+	}
+
+	/* =========================================
+     Responsive Design (Mobile)
+     ========================================= */
+	@media (max-width: 846px) {
+		/* --- Backdrop Overlay --- */
+		.sidebar-overlay {
+			display: block;
+			position: fixed;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background: rgba(0, 0, 0, 0.5);
+			z-index: 90;
+			opacity: 0;
+			visibility: hidden;
+			transition: 0.3s ease;
+			backdrop-filter: blur(2px);
+		}
+
+		.sidebar-overlay.active {
+			opacity: 1;
+			visibility: visible;
+		}
+
+		/* --- Off-Canvas Sidebar --- */
+		.sidebar {
+			position: fixed;
+			top: 0;
+			left: -100%; /* Hidden off-screen to the left */
+			width: 80%;
+			max-width: 300px;
+			height: 100%;
+			transition: left 0.3s ease-in-out;
+			box-shadow: 4px 0 15px rgba(0, 0, 0, 0.5);
+			border-right: none;
+		}
+
+		.sidebar.open {
+			left: 0; /* Slide in */
+		}
+
+		#sidebar-close {
+			display: block;
+		}
+	}
 </style>
