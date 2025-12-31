@@ -1,29 +1,29 @@
----
-/* components/ScrollToTop.astro */
----
-
 <button id="scroll-to-top" aria-label="Volver arriba" title="Volver arriba" class="scroll-btn">
-	<svg
-		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
-		viewBox="0 0 24 24"
-		fill="none"
-		stroke="currentColor"
-		stroke-width="2"
-		stroke-linecap="round"
-		stroke-linejoin="round"
-	>
-		<path d="M18 15l-6-6-6 6"></path>
-	</svg>
+    <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+    >
+        <path d="M18 15l-6-6-6 6"></path>
+    </svg>
 </button>
 
 <style>
+	/**
+     * The button is fixed to the bottom-right of the viewport but remains hidden by default using a combination of zero opacity, hidden visibility, and a downward translation. 
+	 * This setup allows for a smooth entrance animation when the user scrolls down, preventing the button from blocking content before it is needed.
+     */
 	.scroll-btn {
 		position: fixed;
 		bottom: 2rem;
 		right: 2rem;
-		background-color: #a78bfa; /* Tu color de acento */
+		background-color: #a78bfa;
 		color: #13151a;
 		border: none;
 		border-radius: 50%;
@@ -37,16 +37,18 @@
 		visibility: hidden;
 		transform: translateY(20px);
 		transition: all 0.3s ease-in-out;
-		z-index: 50; /* Por encima del contenido */
+		z-index: 50;
 		box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 	}
 
 	.scroll-btn:hover {
-		background-color: #2dd4bf; /* Tu segundo color de gradiente */
+		background-color: #2dd4bf;
 		transform: translateY(-2px);
 	}
 
-	/* Clase que se añade con JS */
+	/**
+     * This modifier class is toggled via JavaScript to trigger the appearance of the button. By resetting the opacity to one and the translation to zero, the button smoothly fades in and slides up into its final position.
+     */
 	.scroll-btn.visible {
 		opacity: 1;
 		visibility: visible;
@@ -55,6 +57,9 @@
 </style>
 
 <script>
+	/**
+	 * Initializes the scroll behavior logic wrapped in the 'astro:page-load' event to ensure compatibility with Astro's View Transitions. The script attaches a scroll listener that reveals the button once the user has scrolled past 300 pixels, and a click listener that smoothly scrolls the window back to the top coordinates when triggered.
+	 */
 	document.addEventListener("astro:page-load", () => {
 		const scrollTopBtn = document.getElementById("scroll-to-top");
 
@@ -69,7 +74,7 @@
 
 			scrollTopBtn.addEventListener("click", () => {
 				window.scrollTo({
-					top: 0
+					top: 0,
 				});
 			});
 		}

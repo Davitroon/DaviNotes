@@ -1,6 +1,6 @@
 ---
 
-layout: ../../layouts/DocsLayout.astro
+layout: ../../layouts/DocInfoLayout.astro
 title: "Components in Astro"
 
 ---

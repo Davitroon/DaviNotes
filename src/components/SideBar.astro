@@ -1,94 +1,105 @@
 ---
 import type { Category } from "../data/languages";
+import { getSortedCategories } from "../utils/utils"; //
 
+/**
+ * Defines the required data structure for the SideBar component. 
+ * It expects an array of categorized language objects to generate the navigation tree and the current URL path to determine which menu item should be visually highlighted as active.
+ */
 interface Props {
-	languages: Category[];
-	currentPath: string;
+    languages: Category[];
+    currentPath: string;
 }
 
 const { languages, currentPath } = Astro.props;
 
+const sortedLanguages = getSortedCategories(languages);
+
+/**
+ * Determines whether a specific navigation link should be marked as active based on the current URL. 
+ * It treats the root path strictly to prevent the Home link from remaining active on sub-pages, while other paths use a prefix check to ensure category links remain highlighted when the user visits nested documentation pages.
+ */
 const isActive = (href: string) => {
-	if (href === "/") return currentPath === "/";
-	return currentPath.startsWith(href);
+    if (href === "/") return currentPath === "/";
+    return currentPath.startsWith(href);
 };
 ---
 
 <aside class="sidebar">
-	<div class="logo">Davi<span class="text-gradient">Notes</span></div>
-	<nav class="nav-div" aria-label="Main navigation">
-		<ul class="nav-list">
-			<li>
-				<a href="/" class={isActive("/") ? "active" : ""}>
-					<span class="icon">🏠</span> Home
-				</a>
-			</li>
+    <div class="logo">Davi<span class="text-gradient">Notes</span></div>
+    <nav class="nav-div" aria-label="Main navigation">
+        <ul class="nav-list">
+            <li>
+                <a href="/" class={isActive("/") ? "active" : ""}>
+                    <span class="icon">🏠</span> Home
+                </a>
+            </li>
 
-			{
-				languages.map((cat) => (
-					<li class="nav-group">
-						<h3 class="nav-title">{cat.category}</h3>
+            {
+                sortedLanguages.map((cat) => (
+                    <li class="nav-group">
+                        <h3 class="nav-title">{cat.category}</h3>
 
-						<ul class="nav-list">
-							{cat.items.map((item) => (
-								<li>
-									<a
-										href={item.href}
-										class={isActive(item.href) ? "active" : ""}
-									>
-										<span class="icon">{item.icon}</span>
-										{item.title}
-									</a>
-								</li>
-							))}
-						</ul>
-					</li>
-				))
-			}
-		</ul>
-	</nav>
+                        <ul class="nav-list">
+                            {cat.items.map((item) => (
+                                <li>
+                                    <a
+                                        href={item.href}
+                                        class={isActive(item.href) ? "active" : ""}
+                                    >
+                                        <span class="icon">{item.icon}</span>
+                                        {item.title}
+                                    </a>
+                                </li>
+                            ))}
+                        </ul>
+                    </li>
+                ))
+            }
+        </ul>
+    </nav>
 </aside>
 
 <style>
-	/* === SIDEBAR === */
-	.sidebar {
-		background: #13151a;
-		border-right: 1px solid rgba(255, 255, 255, 0.1);
-		padding: 2rem;
+    /**
+     * The main sidebar container uses sticky positioning to ensure the navigation remains accessible as the user scrolls down long documentation pages. It takes up most of the viewport height and establishes a vertical flex context to organize the logo and navigation groups.
+     */
+    .sidebar {
+        background: #13151a;
+        border-right: 1px solid rgba(255, 255, 255, 0.1);
+        padding: 2rem;
+        display: flex;
+        flex-direction: column;
+        position: sticky;
+        top: 0;
+        height: 93vh;
+    }
 
-		display: flex;
-		flex-direction: column;
+    .logo {
+        font-size: 1.5rem;
+        font-weight: bold;
+        margin-bottom: 2rem;
+        color: #fff;
+        padding-left: 0.5rem;
+    }
 
-		position: sticky;
-		top: 0;
-		height: 93vh;
-	}
+    .nav-group {
+        margin-top: 1.5rem;
+    }
 
-	.logo {
-		font-size: 1.5rem;
-		font-weight: bold;
-		margin-bottom: 2rem;
-		color: #fff;
-		padding-left: 0.5rem;
-	}
+    .nav-title {
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: #666;
+        margin-bottom: 0.75rem;
+        padding-left: 1rem;
+        font-weight: 600;
+    }
 
-	.nav-group {
-		margin-top: 1.5rem;
-	}
-
-	.nav-title {
-		font-size: 0.75rem;
-		text-transform: uppercase;
-		letter-spacing: 0.1em;
-		color: #666;
-		margin-bottom: 0.75rem;
-		padding-left: 1rem;
-		font-weight: 600;
-	}
-
-	.nav-list {
-		list-style: none;
-		padding: 0;
-		margin: 0;
-	}
+    .nav-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
 </style>

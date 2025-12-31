@@ -1,68 +1,75 @@
 ---
 const currentPath = Astro.url.pathname;
+
+/** 
+ * Processes the raw URL path to ensure a clean array of segments. It removes any trailing slash to prevent empty segments at the end of the array, splits the string by slashes, and filters out any falsy values (like the empty string from the initial slash).
+ */
 const cleanPath = currentPath.replace(/\/$/, "");
 const segments = cleanPath.split("/").filter(Boolean);
 
+/** 
+ * Transforms the path segments into an array of breadcrumb objects containing a label and a URL. It reconstructs the cumulative path for the `href` and formats the `label` by converting hyphens into spaces and capitalizing the first letter of each word to ensure the text is human-readable.
+ */
 const breadcrumbs = segments.map((segment, index) => {
-	const href = "/" + segments.slice(0, index + 1).join("/");
-	const label = segment
-		.replace(/-/g, " ")
-		.replace(/\b\w/g, (char) => char.toUpperCase());
+    const href = "/" + segments.slice(0, index + 1).join("/");
+    const label = segment
+        .replace(/-/g, " ")
+        .replace(/\b\w/g, (char) => char.toUpperCase());
 
-	return { label, href };
+    return { label, href };
 });
 ---
 
 <nav class="breadcrumb" aria-label="Breadcrumb">
-	<a href="/" class="crumb-link">Home</a>
+    <a href="/" class="crumb-link">Home</a>
 
-	{
-		breadcrumbs.map((crumb, index) => {
-			const isLast = index === breadcrumbs.length - 1;
+    {
+        breadcrumbs.map((crumb, index) => {
+            const isLast = index === breadcrumbs.length - 1;
 
-			return (
-				<>
-					<span class="separator">/</span>
-					{isLast ? (
-						<span class="crumb-text">{crumb.label}</span>
-					) : (
-						<a href={crumb.href} class="crumb-link">
-							{crumb.label}
-						</a>
-					)}
-				</>
-			);
-		})
-	}
+            return (
+                <>
+                    <span class="separator">/</span>
+                    {isLast ? (
+                        <span class="crumb-text">{crumb.label}</span>
+                    ) : (
+                        <a href={crumb.href} class="crumb-link">
+                            {crumb.label}
+                        </a>
+                    )}
+                </>
+            );
+        })
+    }
 </nav>
 
 <style>
-	.breadcrumb {
-		display: flex;
-		align-items: center;
-		gap: 0.5rem;
-		font-size: 0.9rem;
-	}
+    .breadcrumb {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 0.9rem;
+    }
 
-	.crumb-link {
-		color: #888;
-		text-decoration: none;
-		font-weight: bold; 
-		transition: 0.2s ease;
-	}
+    .crumb-link {
+        color: #888;
+        text-decoration: none;
+        font-weight: bold; 
+        transition: color 0.2s ease;
+    }
 
-	.crumb-link:hover {
-		color: #a78bfa;
-	}
+    .crumb-link:hover {
+        color: #a78bfa;
+    }
 
-	.crumb-text {
-		color: white;
-		font-weight: bold;
-		cursor: default;
-	}
+    .crumb-text {
+        color: white;
+        font-weight: bold;
+        cursor: default;
+    }
 
-	.separator {
-		color: #444;
-		user-select: none;
-	}
+    .separator {
+        color: #444;
+        user-select: none;
+    }
 </style>

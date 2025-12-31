@@ -1,48 +1,52 @@
 ---
+/**
+ * Defines the essential properties required to render a navigation card. 
+ * This includes the destination URL, textual content for the header and description, and a specific color hex code that drives the visual theme and hover effects of the individual card.
+ */
 interface Props {
-	title: string;
-	description: string;
-	href: string;
-	color: string;
+  title: string;
+  description: string;
+  href: string;
+  color: string;
 }
 
 const { href, title, description, color } = Astro.props;
 ---
 
 <a href={href} class="lang-card" style={`--glow-color: ${color}`}>
-	<div class="content">
-		<h2>
-			{title}
-			<span>&rarr;</span>
-		</h2>
-		<p>
-			{description}
-		</p>
-	</div>
+  <div class="content">
+    <h2>
+      {title}
+      <span>&rarr;</span>
+    </h2>
+    <p>
+      {description}
+    </p>
+  </div>
 </a>
 
 <style>
-	.lang-card {
-		display: flex;
-		padding: 1px;
-		background-color: #23262d;
-		border-radius: 12px;
-		color: white;
-		transition: all 0.3s ease;
-		text-decoration: none;
-	}
+  .lang-card {
+    display: flex;
+    padding: 1px;
+    background-color: #23262d;
+    border-radius: 12px;
+    color: white;
+    transition: all 0.3s ease;
+    text-decoration: none;
+  }
 
-	.lang-card:hover {
-		box-shadow: 0 0 20px -5px var(--glow-color);
-		transform: translateY(-3px);
-	}
+  .lang-card:hover {
+    box-shadow: 0 0 20px -5px var(--glow-color);
+    transform: translateY(-3px);
+  }
 
-	.content {
-		width: 100%;
-		text-decoration: none;
-		line-height: 1.4;
-		padding: 1.5rem;
-		border-radius: 8px;
-		opacity: 0.8;
-	}
+  .content {
+    width: 100%;
+    text-decoration: none;
+    line-height: 1.4;
+    padding: 1.5rem;
+    border-radius: 8px;
+    opacity: 0.8;
+  }
 </style>

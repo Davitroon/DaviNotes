@@ -1,5 +1,5 @@
 ---
-layout: ../../layouts/DocsLayout.astro
+layout: ../../layouts/DocInfoLayout.astro
 title: "React's fundamentals"
 ---
 
