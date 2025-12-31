@@ -174,14 +174,14 @@ export const languages: Category[] = [
                         href: "/html/structure",
                     },
                     {
-                        title: "Semantic HTML",
+                        title: "Semantic",
                         desc: "Using meaningful tags (header, article, footer) for better accessibility and SEO.",
-                        href: "/html/semantic-html",
+                        href: "/html/semantic",
                     },
                     {
-                        title: "Forms & Inputs",
+                        title: "Forms",
                         desc: "Collecting user data effectively using form elements, input types, and validation.",
-                        href: "/html/forms-inputs",
+                        href: "/html/forms",
                     },
                 ],
             }
