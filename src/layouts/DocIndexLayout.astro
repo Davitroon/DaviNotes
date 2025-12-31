@@ -2,6 +2,7 @@
 import DocsLayout from "./DocInfoLayout.astro";
 import InfoBox from "../components/InfoBox.astro";
 import { languages } from "../data/languages";
+import { getTextColorForBackground } from "../utils/colors";
 
 /**
  * Defines the essential configuration properties required to render the landing page.
@@ -15,6 +16,8 @@ interface Props {
 }
 
 const { language, description, color, colorDark } = Astro.props;
+
+const btnTextColor = getTextColorForBackground(color);
 
 /**
  * Retrieves the specific language metadata by traversing the categorized data structure.
@@ -75,7 +78,13 @@ const installLink = `/${language.toLowerCase()}/installation-guide`;
 	</div>
 </DocsLayout>
 
-<style define:vars={{ themeColor: color, themeColorDark: colorDark }}>
+<style
+	define:vars={{
+		themeColor: color,
+		themeColorDark: colorDark,
+		themeTextColor: btnTextColor,
+	}}
+>
 	/* 
     Utilizes Astro's define:vars directive to pass server-side JavaScript variables into the CSS scope. 
     This creates dynamic CSS custom properties based on the props. 
@@ -91,12 +100,7 @@ const installLink = `/${language.toLowerCase()}/installation-guide`;
 
 	.install-btn {
 		background-color: var(--themeColor);
-		color: black;
-		padding: 0.5rem 1rem;
-		border-radius: 4px;
-		text-decoration: none;
-		display: inline-block;
-		font-weight: bold;
+    color: var(--themeTextColor);
 	}
 
 	.install-btn:hover {
