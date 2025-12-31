@@ -1,105 +1,154 @@
 ---
 import type { Category } from "../data/languages";
-import { getSortedCategories } from "../utils/utils"; //
+import { getSortedCategories } from "../utils/utils";
 
-/**
- * Defines the required data structure for the SideBar component. 
- * It expects an array of categorized language objects to generate the navigation tree and the current URL path to determine which menu item should be visually highlighted as active.
- */
 interface Props {
-    languages: Category[];
-    currentPath: string;
+  languages: Category[];
+  currentPath: string;
 }
 
 const { languages, currentPath } = Astro.props;
-
 const sortedLanguages = getSortedCategories(languages);
 
-/**
- * Determines whether a specific navigation link should be marked as active based on the current URL. 
- * It treats the root path strictly to prevent the Home link from remaining active on sub-pages, while other paths use a prefix check to ensure category links remain highlighted when the user visits nested documentation pages.
- */
 const isActive = (href: string) => {
-    if (href === "/") return currentPath === "/";
-    return currentPath.startsWith(href);
+  if (href === "/") return currentPath === "/";
+  return currentPath.startsWith(href);
 };
 ---
 
+<div class="sidebar-overlay"></div>
+
 <aside class="sidebar">
+  <div class="sidebar-header">
     <div class="logo">Davi<span class="text-gradient">Notes</span></div>
-    <nav class="nav-div" aria-label="Main navigation">
-        <ul class="nav-list">
-            <li>
-                <a href="/" class={isActive("/") ? "active" : ""}>
-                    <span class="icon">🏠</span> Home
-                </a>
-            </li>
+    
+    <button id="sidebar-close" aria-label="Cerrar menú">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+    </button>
+  </div>
 
-            {
-                sortedLanguages.map((cat) => (
-                    <li class="nav-group">
-                        <h3 class="nav-title">{cat.category}</h3>
+  <nav class="nav-div" aria-label="Main navigation">
+    <ul class="nav-list">
+      <li>
+        <a href="/" class={isActive("/") ? "active" : ""}>
+          <span class="icon">🏠</span> Home
+        </a>
+      </li>
 
-                        <ul class="nav-list">
-                            {cat.items.map((item) => (
-                                <li>
-                                    <a
-                                        href={item.href}
-                                        class={isActive(item.href) ? "active" : ""}
-                                    >
-                                        <span class="icon">{item.icon}</span>
-                                        {item.title}
-                                    </a>
-                                </li>
-                            ))}
-                        </ul>
-                    </li>
-                ))
-            }
-        </ul>
-    </nav>
+      {
+        sortedLanguages.map((category) => (
+          <li class="nav-group">
+            <h3 class="nav-title">{category.category}</h3>
+            <ul class="nav-list">
+              {category.items.map((lenguage) => (
+                <li>
+                  <a
+                    href={lenguage.href}
+                    class={isActive(lenguage.href) ? "active" : ""}
+                  >
+                    <span class="icon">{lenguage.icon}</span>
+                    {lenguage.title}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </li>
+        ))
+      }
+    </ul>
+  </nav>
 </aside>
 
 <style>
-    /**
-     * The main sidebar container uses sticky positioning to ensure the navigation remains accessible as the user scrolls down long documentation pages. It takes up most of the viewport height and establishes a vertical flex context to organize the logo and navigation groups.
-     */
+  /* === ESTILOS BASE (DESKTOP) === */
+  .sidebar {
+    background: #13151a;
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    position: sticky;
+    top: 0;
+    height: 100vh; /* Cambiado a 100vh para ocupar todo */
+    overflow-y: auto; /* Permitir scroll si la lista es larga */
+    z-index: 100;
+  }
+
+  .sidebar-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 2rem;
+  }
+
+  .logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #fff;
+    padding-left: 0.5rem;
+  }
+
+  #sidebar-close {
+      display: none; /* Oculto en escritorio */
+      background: none;
+      border: none;
+      color: #fff;
+      cursor: pointer;
+  }
+
+  .sidebar-overlay {
+      display: none; /* Oculto en escritorio */
+  }
+  
+  /* Resto de tus estilos de navegación... */
+  .nav-group { margin-top: 1.5rem; }
+  .nav-title { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; color: #666; margin-bottom: 0.75rem; padding-left: 1rem; font-weight: 600; }
+  .nav-list { list-style: none; padding: 0; margin: 0; }
+
+
+  /* === ESTILOS RESPONSIVE (MÓVIL) === */
+  @media (max-width: 846px) {
+    
+    /* Fondo Oscuro */
+    .sidebar-overlay {
+        display: block;
+        position: fixed;
+        top: 0; 
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,0.5);
+        z-index: 90;
+        opacity: 0;
+        visibility: hidden;
+        transition: 0.3s ease;
+        backdrop-filter: blur(2px);
+    }
+
+    .sidebar-overlay.active {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    /* Sidebar como cajón deslizante */
     .sidebar {
-        background: #13151a;
-        border-right: 1px solid rgba(255, 255, 255, 0.1);
-        padding: 2rem;
-        display: flex;
-        flex-direction: column;
-        position: sticky;
+        position: fixed;
         top: 0;
-        height: 93vh;
+        left: -100%; /* Escondido a la izquierda */
+        width: 80%; /* Ocupa el 80% del móvil */
+        max-width: 300px;
+        height: 100%;
+        transition: left 0.3s ease-in-out;
+        box-shadow: 4px 0 15px rgba(0,0,0,0.5);
+        border-right: none;
     }
 
-    .logo {
-        font-size: 1.5rem;
-        font-weight: bold;
-        margin-bottom: 2rem;
-        color: #fff;
-        padding-left: 0.5rem;
+    .sidebar.open {
+        left: 0; /* Aparece */
     }
 
-    .nav-group {
-        margin-top: 1.5rem;
+    #sidebar-close {
+        display: block; /* Visible en móvil */
     }
-
-    .nav-title {
-        font-size: 0.75rem;
-        text-transform: uppercase;
-        letter-spacing: 0.1em;
-        color: #666;
-        margin-bottom: 0.75rem;
-        padding-left: 1rem;
-        font-weight: 600;
-    }
-
-    .nav-list {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-    }
+  }
 </style>
