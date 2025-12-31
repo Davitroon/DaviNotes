@@ -1,3 +1,5 @@
+import type { Category } from "../data/languages";
+
 /**
  * Calculates the relative luminance of a hex color.
  * Returns a number between 0 (dark) and 1 (light).
@@ -28,4 +30,17 @@ export function getTextColorForBackground(hex: string): string {
 
 	/** Return the color with the higher contrast ratio */
 	return contrastBlack > contrastWhite ? "#000" : "#fff";
+}
+
+/**
+ * Receives a list of categories and returns a NEW list
+ * with each category's items sorted alphabetically (A-Z).
+ */
+export function getSortedCategories(data: Category[]): Category[] {
+  return data.map((category) => ({
+    ...category,
+    items: [...category.items].sort((a, b) =>
+      a.title.localeCompare(b.title) 
+    ),
+  }));
 }
