@@ -8,12 +8,8 @@ import "../styles/global.css";
 import "../styles/doc-layout.css";
 import { languages } from "../data/languages";
 
-/**
- * Defines the contract for the documentation layout.
- * The title prop is essential for SEO and browser tab identification, dynamically setting the HTML <title> tag for every page that utilizes this layout.
- */
 interface Props {
-	title: string;
+  title: string;
 }
 
 const { title } = Astro.props;
@@ -22,56 +18,100 @@ const currentPath = Astro.url.pathname;
 
 <!doctype html>
 <html lang="es">
-	<head>
-		<meta charset="UTF-8" />
-		<title>{title}</title>
-		{
-			/* 
-            Injects the necessary scripts to enable Astro's View Transitions.
-            */
-		}
-		<ClientRouter />
-	</head>
-	<body>
-		<div class="layout-container">
-			{
-				/* 
-                The Sidebar component is tagged with the 'transition:persist' directive. 
-                This is crucial for user experience, as it ensures the sidebar's state (such as scroll position or active grouping) remains unchanged while the user navigates 
-                through different documentation pages.
-                */
-			}
-			<SideBar
-				languages={languages}
-				currentPath={currentPath}
-				transition:persist
-			/>
+  <head>
+    <meta charset="UTF-8" />
+    <title>{title}</title>
+    {/* Enables Astro's View Transitions for SPA-like navigation */}
+    <ClientRouter />
+  </head>
+  <body>
+    <div class="layout-container">
+      {/* 'transition:persist' keeps the Sidebar state (scroll position, open folders)
+        intact while navigating between different documentation pages.
+      */}
+      <SideBar
+        languages={languages}
+        currentPath={currentPath}
+        transition:persist
+      />
 
-			<main class="content-area">
-				<header class="top-bar">
-					<div class="breadcrumb-container">
-						<button class="back-button" onclick="history.back()">
-							← Go back
-						</button>
+      <main class="content-area">
+        <header class="top-bar">
+          <div class="breadcrumb-container">
+            {/* Mobile Menu Toggle Button (Visible only on small screens via CSS) */}
+            <button
+              id="menu-toggle"
+              class="menu-btn"
+              aria-label="Open menu"
+              title="Open menu"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <line x1="3" x2="21" y1="6" y2="6"></line>
+                <line x1="3" x2="21" y1="12" y2="12"></line>
+                <line x1="3" x2="21" y1="18" y2="18"></line>
+              </svg>
+            </button>
 
-						<Breadcrumbs />
-					</div>
-				</header>
+            {/* Native browser history navigation */}
+            <button class="back-button" onclick="history.back()">
+              <span class="arrow-icon">←</span> Go back
+            </button>
 
-				{
-					/* 
-                    The slot element acts as a placeholder for the specific content of each page. 
-                    When this layout is wrapped around a page component, the page's markup is injected here.
-					 */
-				}
-				<div class="page-content">
-					<slot />
-				</div>
+            <Breadcrumbs />
+          </div>
+        </header>
 
-				<Footer />
-			</main>
-		</div>
+        {/* Main Content Slot */}
+        <div class="page-content">
+          <slot />
+        </div>
 
-		<ScrollToTop />
-	</body>
+        <Footer />
+      </main>
+    </div>
+
+    <ScrollToTop />
+
+    <script>
+      /**
+       * Handles Mobile Menu Logic.
+       * The 'astro:page-load' ensures the script re-runs correctly after every View Transition navigation.
+       */
+      document.addEventListener("astro:page-load", () => {
+        // DOM Elements
+        const menuBtn = document.getElementById("menu-toggle");
+        const sidebar = document.querySelector(".sidebar");
+        const overlay = document.querySelector(".sidebar-overlay");
+        const closeBtn = document.getElementById("sidebar-close");
+
+        // Actions
+        function toggleMenu() {
+          sidebar?.classList.toggle("open");
+          overlay?.classList.toggle("active");
+        }
+
+        function closeMenu() {
+          sidebar?.classList.remove("open");
+          overlay?.classList.remove("active");
+        }
+
+        // Event Listeners
+        menuBtn?.addEventListener("click", toggleMenu);
+        closeBtn?.addEventListener("click", closeMenu);
+        
+        // Close menu when clicking the backdrop overlay
+        overlay?.addEventListener("click", closeMenu);
+      });
+    </script>
+  </body>
 </html>
