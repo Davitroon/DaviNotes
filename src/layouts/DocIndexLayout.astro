@@ -4,101 +4,102 @@ import InfoBox from "../components/InfoBox.astro";
 import { languages } from "../data/languages";
 
 /**
- * Defines the essential configuration properties required to render the landing page. 
+ * Defines the essential configuration properties required to render the landing page.
  * It captures the target language name to fetch data, a brief introductory description, and specific color hex codes to dynamically theme UI elements like buttons and highlights.
  */
 interface Props {
-  language: string;
-  description: string;
-  color: string;
-  colorDark: string;
+	language: string;
+	description: string;
+	color: string;
+	colorDark: string;
 }
 
 const { language, description, color, colorDark } = Astro.props;
 
 /**
- * Retrieves the specific language metadata by traversing the categorized data structure. 
+ * Retrieves the specific language metadata by traversing the categorized data structure.
  * It searches through all categories to find the item matching the provided title prop.
  */
 const langInfo = languages
-  .find((lang) => lang.items.some((item) => item.title === language))
-  ?.items.find((item) => item.title === language);
+	.find((lang) => lang.items.some((item) => item.title === language))
+	?.items.find((item) => item.title === language);
 
 const installLink = `/${language.toLowerCase()}/installation-guide`;
 ---
 
 <DocsLayout title={language}>
-  <div class="landing-container">
-    <h1 class="title"><span class="text-highlight">{language}</span> Notes</h1>
-    <p class="intro">{description}</p>
+	<div class="landing-container">
+		<h1 class="title"><span class="text-highlight">{language}</span> Notes</h1>
+		<p class="intro">{description}</p>
 
-    <InfoBox
-      difficulty={langInfo?.difficulty}
-      prerequisites={langInfo?.prerequisites}
-    />
+		<InfoBox
+			difficulty={langInfo?.difficulty}
+			prerequisites={langInfo?.prerequisites}
+		/>
 
-    <hr class="divider" />
+		<hr class="divider" />
 
-    <section>
-      <h2>Key Concepts</h2>
-      <ul class="topic-list">
-        {
-          langInfo?.concepts.map((concept) => (
-            <li>
-              <a href={concept.href}>
-                <h3>{concept.title}</h3>
-                <p>{concept.desc}</p>
-              </a>
-            </li>
-          ))
-        }
-      </ul>
-    </section>
+		<section>
+			<h2>Key Concepts</h2>
+			<ul class="topic-list">
+				{
+					/* Index will be used in doc-layout.css for calculing the delay time in its animation */
+					langInfo?.concepts.map((concept, index) => (
+						<li style={`--i: ${index}`}>
+							<a href={concept.href}>
+								<h3>{concept.title}</h3>
+								<p>{concept.desc}</p>
+							</a>
+						</li>
+					))
+				}
+			</ul>
+		</section>
 
-    <hr class="divider" />
+		<hr class="divider" />
 
-    <section class="install-section">
-      <div class="cta-container">
-        <h2>Ready to start building?</h2>
-        <p>Follow the complete setup process in our dedicated guide.</p>
+		<section class="install-section">
+			<div class="cta-container">
+				<h2>Ready to start building?</h2>
+				<p>Follow the complete setup process in our dedicated guide.</p>
 
-        <a
-          href={installLink}
-          class="install-btn"
-          title={`See ${language}'s installation guide`}
-        >
-          Installation Guide <span>&rarr;</span>
-        </a>
-      </div>
-    </section>
-  </div>
+				<a
+					href={installLink}
+					class="install-btn"
+					title={`See ${language}'s installation guide`}
+				>
+					Installation Guide <span>&rarr;</span>
+				</a>
+			</div>
+		</section>
+	</div>
 </DocsLayout>
 
 <style define:vars={{ themeColor: color, themeColorDark: colorDark }}>
-  /* 
+	/* 
     Utilizes Astro's define:vars directive to pass server-side JavaScript variables into the CSS scope. 
     This creates dynamic CSS custom properties based on the props. 
   */
-  
-  .text-highlight {
-    color: var(--themeColor);
-  }
 
-  .topic-list a:hover {
-    border-color: var(--themeColor);
-  }
+	.text-highlight {
+		color: var(--themeColor);
+	}
 
-  .install-btn {
-    background-color: var(--themeColor);
-    color: black;
-    padding: 0.5rem 1rem;
-    border-radius: 4px;
-    text-decoration: none;
-    display: inline-block;
-    font-weight: bold;
-  }
+	.topic-list a:hover {
+		border-color: var(--themeColor);
+	}
 
-  .install-btn:hover {
-    background-color: var(--themeColorDark);
-  }
+	.install-btn {
+		background-color: var(--themeColor);
+		color: black;
+		padding: 0.5rem 1rem;
+		border-radius: 4px;
+		text-decoration: none;
+		display: inline-block;
+		font-weight: bold;
+	}
+
+	.install-btn:hover {
+		background-color: var(--themeColorDark);
+	}
 </style>
