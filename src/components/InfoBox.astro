@@ -10,11 +10,12 @@ const { difficulty, prerequisites } = Astro.props;
  * Determines the visual color theme for the difficulty badge based on the provided skill level. It returns specific hex codes for "Fundamental", "Beginner", "Intermediate", and "Advanced" tiers, defaulting to a neutral gray for undefined or unrecognized levels.
  */
 const getDifficultyColor = (level: string | undefined) => {
-	if (level === "Fundamental") return "#3b82f6"; // Blue
-	if (level === "Beginner") return "#10b981";
-	if (level === "Intermediate") return "#f59e0b";
-	if (level === "Advanced") return "#ef4444";
-	return "#888";
+    if (level === "Fundamental") return "#3b82f6"; // Blue
+    if (level === "Beginner") return "#10b981";    // Green
+    if (level === "Elementary") return "#84cc16";  // Lime
+    if (level === "Intermediate") return "#f59e0b"; // Orange
+    if (level === "Advanced") return "#ef4444";    // Red
+    return "#888";
 };
 
 const badgeColor = getDifficultyColor(difficulty);

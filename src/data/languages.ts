@@ -5,6 +5,7 @@
 export type DifficultyLevel =
     | "Fundamental"
     | "Beginner"
+    | "Elementary"
     | "Intermediate"
     | "Advanced";
 
@@ -102,6 +103,32 @@ export const languages: Category[] = [
                     },
                 ],
             },
+            {
+                title: "PHP",
+                desc: "A popular general-purpose scripting language that is especially suited to web development",
+                color: "#777bb4",
+                href: "/php",
+                icon: "🐘",
+                difficulty: "Elementary",
+                prerequisites: ["HTML"],
+                concepts: [
+                    {
+                        title: "PHP Fundamentals",
+                        desc: "Core concepts: syntax, variables, types, operators, and control structures.",
+                        href: "/php/fundamentals",
+                    },
+                    {
+                        title: "Functions & Data Handling",
+                        desc: "Structuring code with functions, managing arrays, and string manipulation.",
+                        href: "/php/functions-data",
+                    },
+                    {
+                        title: "Forms & Server Interaction",
+                        desc: "Processing user input via forms, validation, and using superglobals like $_POST.",
+                        href: "/php/forms-server",
+                    },
+                ],
+            }
         ],
     },
     {
