@@ -24,8 +24,8 @@ const btnTextColor = getTextColorForBackground(color);
  * It searches through all categories to find the item matching the provided title prop.
  */
 const langInfo = languages
-	.find((lang) => lang.items.some((item) => item.title === language))
-	?.items.find((item) => item.title === language);
+	.flatMap((lang) => lang.items)
+	.find((item) => item.title === language);
 
 const installLink = `/${language.toLowerCase()}/installation-guide`;
 ---
@@ -100,7 +100,7 @@ const installLink = `/${language.toLowerCase()}/installation-guide`;
 
 	.install-btn {
 		background-color: var(--themeColor);
-    color: var(--themeTextColor);
+		color: var(--themeTextColor);
 	}
 
 	.install-btn:hover {
