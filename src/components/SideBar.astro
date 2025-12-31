@@ -1,5 +1,6 @@
 ---
 import type { Category } from "../data/languages";
+import { getSortedCategories } from "../utils/utils"; //
 
 /**
  * Defines the required data structure for the SideBar component. 
@@ -11,6 +12,8 @@ interface Props {
 }
 
 const { languages, currentPath } = Astro.props;
+
+const sortedLanguages = getSortedCategories(languages);
 
 /**
  * Determines whether a specific navigation link should be marked as active based on the current URL. 
@@ -33,7 +36,7 @@ const isActive = (href: string) => {
             </li>
 
             {
-                languages.map((cat) => (
+                sortedLanguages.map((cat) => (
                     <li class="nav-group">
                         <h3 class="nav-title">{cat.category}</h3>
 

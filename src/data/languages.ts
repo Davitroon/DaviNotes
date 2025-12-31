@@ -159,6 +159,32 @@ export const languages: Category[] = [
                     },
                 ],
             },
+            {
+                title: "HTML",
+                desc: "The standard markup language for creating web pages and applications",
+                color: "#e34c26",
+                href: "/html",
+                icon: "🌐",
+                difficulty: "Fundamental",
+                prerequisites: ["Nothing"],
+                concepts: [
+                    {
+                        title: "Elements & Structure",
+                        desc: "Understanding tags, attributes, nesting, and the basic DOM tree skeleton.",
+                        href: "/html/elements-structure",
+                    },
+                    {
+                        title: "Semantic HTML",
+                        desc: "Using meaningful tags (header, article, footer) for better accessibility and SEO.",
+                        href: "/html/semantic-html",
+                    },
+                    {
+                        title: "Forms & Inputs",
+                        desc: "Collecting user data effectively using form elements, input types, and validation.",
+                        href: "/html/forms-inputs",
+                    },
+                ],
+            }
         ],
     },
 ];
