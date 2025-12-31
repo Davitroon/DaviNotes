@@ -105,7 +105,7 @@ export const languages: Category[] = [
             },
             {
                 title: "PHP",
-                desc: "A popular general-purpose scripting language that is especially suited to web development",
+                desc: "Create dynamic, data-driven web applications on the server",
                 color: "#777bb4",
                 href: "/php",
                 icon: "🐘",
