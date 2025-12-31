@@ -1,0 +1,94 @@
+---
+// src/layouts/LanguageLanding.astro
+import DocsLayout from "./DocInfoLayout.astro"; // Ajusta la ruta según ubicación
+import InfoBox from "../components/InfoBox.astro";
+import { languages } from "../data/languages";
+
+interface Props {
+  language: string; // "Java", "Python", "Astro", etc.
+  description: string;
+  color: string;     // Hex code principal
+  colorDark: string; // Hex code para hover
+}
+
+const { language, description, color, colorDark } = Astro.props;
+
+// Lógica de búsqueda centralizada aquí
+const langInfo = languages
+    .find((lang) => lang.items.some((item) => item.title === language))
+    ?.items.find((item) => item.title === language);
+
+const installLink = `/${language.toLowerCase()}/installation-guide`;
+---
+
+<DocsLayout title={language}>
+    <div class="landing-container">
+        <h1 class="title"><span class="text-highlight">{language}</span> Notes</h1>
+        <p class="intro">{description}</p>
+
+        <InfoBox
+            difficulty={langInfo?.difficulty}
+            prerequisites={langInfo?.prerequisites}
+        />
+
+        <hr class="divider" />
+
+        <section>
+            <h2>Key Concepts</h2>
+            <ul class="topic-list">
+                {
+                    langInfo?.concepts.map((concept) => (
+                        <li>
+                            <a href={concept.href}>
+                                <h3>{concept.title}</h3>
+                                <p>{concept.desc}</p>
+                            </a>
+                        </li>
+                    ))
+                }
+            </ul>
+        </section>
+
+        <hr class="divider" />
+
+        <section class="install-section">
+            <div class="cta-container">
+                <h2>Ready to start building?</h2>
+                <p>Follow the complete setup process in our dedicated guide.</p>
+
+                <a
+                    href={installLink}
+                    class="install-btn"
+                    title={`See ${language}'s installation guide`}
+                >
+                    Installation Guide <span>&rarr;</span>
+                </a>
+            </div>
+        </section>
+    </div>
+</DocsLayout>
+
+<style define:vars={{ themeColor: color, themeColorDark: colorDark }}>
+    .text-highlight {
+        color: var(--themeColor);
+    }
+
+    .topic-list a:hover {
+        border-color: var(--themeColor);
+    }
+
+    .install-btn {
+        background-color: var(--themeColor);
+        color: black;
+        padding: 0.5rem 1rem;
+        border-radius: 4px;
+        text-decoration: none;
+        display: inline-block;
+        font-weight: bold;
+    }
+
+    .install-btn:hover {
+        background-color: var(--themeColorDark);
+    }
+
+</style>

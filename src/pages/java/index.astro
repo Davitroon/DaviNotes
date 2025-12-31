@@ -1,78 +1,10 @@
 ---
-import DocsLayout from "../../layouts/DocsLayout.astro";
-import InfoBox from "../../components/InfoBox.astro";
-import { languages } from "../../data/languages";
-
-const javaInfo = languages
-	.find((lang) => lang.items.some((item) => item.title === "Java"))
-	?.items.find((item) => item.title === "Java");
+import LanguageLanding from "../../layouts/DocIndexLayout.astro";
 ---
 
-<DocsLayout title="Java">
-	<h1 class="title"><span class="text-java">Java</span> Notes</h1>
-	<p class="intro">Robust, cross-platform object-oriented language.</p>
-
-	<InfoBox
-		difficulty={javaInfo?.difficulty}
-		prerequisites={javaInfo?.prerequisites}
-	/>
-
-	<hr class="divider" />
-
-	<section>
-		<h2>Key Concepts</h2>
-		<ul class="topic-list">
-			{
-				javaInfo?.concepts.map((concept) => (
-					<li>
-						<a href={concept.href}>
-							<h3>{concept.title}</h3>
-							<p>{concept.desc}</p>
-						</a>
-					</li>
-				))
-			}
-		</ul>
-	</section>
-
-	<hr class="divider" />
-
-	<section class="install-section">
-		<div class="cta-container">
-			<h2>Ready to start building?</h2>
-			<p>Follow the complete setup process in our dedicated guide.</p>
-
-			<a
-				href="/java/installation-guide"
-				class="install-btn"
-				title="See Java's installation guide"
-			>
-				Installation Guide <span>&rarr;</span>
-			</a>
-		</div>
-	</section>
-</DocsLayout>
-
-<style>
-	:root {
-		--java-color: #f7b72e;
-		--java-color-dark: #bd8b20;
-	}
-
-	.text-java {
-		color: var(--java-color);
-	}
-
-	.topic-list a:hover {
-		border-color: var(--java-color);
-	}
-
-	.install-btn {
-		background-color: var(--java-color);
-		color: black;
-	}
-
-	.install-btn:hover {
-		background-color: var(--java-color-dark);
-	}
-</style>
+<LanguageLanding
+    language="Java"
+    description="Robust, cross-platform object-oriented language."
+    color="#f7b72e"
+    colorDark="#bd8b20"
+/>
