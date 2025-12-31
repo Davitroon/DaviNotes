@@ -169,9 +169,9 @@ export const languages: Category[] = [
                 prerequisites: ["Nothing"],
                 concepts: [
                     {
-                        title: "Elements & Structure",
+                        title: "Structure",
                         desc: "Understanding tags, attributes, nesting, and the basic DOM tree skeleton.",
-                        href: "/html/elements-structure",
+                        href: "/html/structure",
                     },
                     {
                         title: "Semantic HTML",
