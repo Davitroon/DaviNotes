@@ -71,6 +71,8 @@ Navigating through DaviNotes is intuitive and designed for quick access to infor
 
 - **Home Page:** Upon loading the site, you will see a categorized grid of buttons/cards representing different technologies (e.g., Java, Python, React, HTML).
 
+![Home page swhocase](/public/images/docs/home-showcase.png)
+
 - **Technology Overview:** Clicking on a technology card takes you to its specific DocIndexLayout. Here you will find:
 
     - **Difficulty Level:** An estimate of the learning curve.
@@ -79,7 +81,11 @@ Navigating through DaviNotes is intuitive and designed for quick access to infor
 
     - **Key Concepts:** A list of fundamental topics available for reading.
 
+![Language index showcase](/public/images/docs/doc-index-showcase.png)
+
 - **Documentation Pages:** Inside a topic (e.g., "Basic Syntax" or "Hooks"), you can read the detailed documentation.
+
+![Language documentation showcase](/public/images/docs/doc-showcase.png)
 
 ---
 
@@ -170,4 +176,6 @@ This project is built with modern web standards, focusing on performance and typ
 
 ---
 
-This project will be updated as I learn new libraries, languages, and technologies.
+<div align="center">
+    <em>This project will be updated as I learn new libraries, languages, and technologies.</em>
+</div>
