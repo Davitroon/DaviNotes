@@ -23,10 +23,9 @@
 ## 📚 Table of Contents
 - [📝 Description](#-description "Learn more about the game's concept and purpose")
 - [⚙️ Installation](#️-installation "Instructions to install and run the project locally")
-- [🕹️ How to Use](#%EF%B8%8F-how-to-use "Step-by-step guide on how to use the documentation")
-- [🔧 Game Architecture](#-game-architecture "Understand the structure and logic behind the game")
+- [🕹️ How to Use](#%EF%B8%8F-how-to-use "Step-by-step guide on how to use the website")
+- [🔧 Architecture](#-architecture "Understand the structure and logic behind the proyect")
 - [🧠 Technologies](#-technologies "See which technologies were used to build the project")
-- [🔗 API](#-api "Information about the Truth or Dare API used in this project")
 
 ---
 
@@ -129,7 +128,13 @@ The heart of the application is located at `data/languages.ts`. This file acts a
 **Type Definitions:** The data adheres to strict TypeScript interfaces to ensure consistency across the UI:
 
 ```typescript
-    // Example of the data structure used
+
+    interface Concept {
+        title: string;       // e.g., "Collections"
+        desc: string;        // Short decription of the doc page
+        href: string;        // e.g., "/java/collections"
+    }
+
     interface LanguageItem {
         title: string;       // e.g., "Java"
         desc: string;        // Short description
@@ -139,6 +144,11 @@ The heart of the application is located at `data/languages.ts`. This file acts a
         difficulty: "Fundamental" | "Beginner" | "Elementary" | "Intermediate" | "Advanced";
         prerequisites: string[]; // Recommended prior knowledge
         concepts: Concept[]; // List of documentation topics
+    }
+
+    interface Category {
+        category: string;    // e.g., "Backend"
+        items: LanguageItem[];
     }
 ```
 
