@@ -86,6 +86,7 @@ Navigating through DaviNotes is intuitive and designed for quick access to infor
 
 ## 🔧 Architecture
 
+### 1. Proyect Structure
 The project is structured using **Astro's** file-based routing system. It leverages a component-based architecture to separate layout logic from content.
 
 **File Structure Overview:**
@@ -113,6 +114,36 @@ The project is structured using **Astro's** file-based routing system. It levera
 
 - `SideBar.astro:` Handles the navigation menu, allowing users to browse through the hierarchy of documentation pages.
 
+### 2. Core Data Model
+
+The heart of the application is located at `data/languages.ts`. This file acts as the single source of truth for the entire site. It exports a strictly typed JSON-like structure that dictates:
+
+- **Navigation:** Populates the `SideBar` and `HomeLayout`.
+
+- **Routing:** Maps concepts to their file paths (e.g., `/java/basic-syntax`).
+
+- **Theming:** Defines specific colors (`#f89820`) and icons (`☕`) for each technology.
+
+- **Metadata:** Stores difficulty levels and prerequisites.
+
+**Type Definitions:** The data adheres to strict TypeScript interfaces to ensure consistency across the UI:
+
+```typescript
+    // Example of the data structure used
+    interface LanguageItem {
+        title: string;       // e.g., "Java"
+        desc: string;        // Short description
+        color: string;       // Hex code for dynamic theming
+        href: string;        // e.g., "/java"
+        icon: string;        // Icon for the sidebar item
+        difficulty: "Fundamental" | "Beginner" | "Elementary" | "Intermediate" | "Advanced";
+        prerequisites: string[]; // Recommended prior knowledge
+        concepts: Concept[]; // List of documentation topics
+    }
+```
+
+By modifying this single file, you can add new categories, languages, or topics without altering the UI components.
+
 ---
 
 ## 🧠 Technologies
@@ -123,10 +154,10 @@ This project is built with modern web standards, focusing on performance and typ
 |------------|-------------|
 | ![Astro](https://img.shields.io/badge/Astro-Core-FF5F00?logo=astro&logoColor=white) | The core web framework used for its performance and content-focused approach. |
 | ![TypeScript](https://img.shields.io/badge/TypeScript-Logic-007ACC?logo=typescript&logoColor=white) | Used for logic, components, and ensuring type safety across the project (interfaces for props, data structures). |
-| ![CSS](https://img.shields.io/badge/CSS-Styling-1572B6?logo=css3&logoColor=white) | Custom vanilla CSS variables and scoping are used for styling. |
+| ![CSS](https://img.shields.io/badge/CSS-Styling-1572B6?logo=css&logoColor=white) | Custom vanilla CSS variables and scoping are used for styling. |
 | ![View Transitions](https://img.shields.io/badge/View%20Transitions-SPA-6E5494?logo=astro&logoColor=white) | Provides a SPA-like feel (smooth fading, persistent sidebar) while maintaining the benefits of a multi-page application using Astro ClientRouter. |
 | ![Markdown](https://img.shields.io/badge/Markdown-Content-000000?logo=markdown&logoColor=white) | Used for the actual documentation content, making it easy to write and format technical notes. |
 
+---
 
-
-Status: 🚧 In Development The project is continuously updated as I learn new libraries, languages, and technologies.
+This project will be updated as I learn new libraries, languages, and technologies.
