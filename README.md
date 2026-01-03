@@ -174,6 +174,7 @@ This project is built with modern web standards, focusing on performance and typ
 <sub>
 
 Source code is licensed under the MIT License.
+
 Documentation is licensed under Creative Commons Attribution-NonCommercial 4.0 (CC BY-NC 4.0).
 
 </sub>
