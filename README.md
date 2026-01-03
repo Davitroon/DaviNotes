@@ -167,8 +167,14 @@ This project is built with modern web standards, focusing on performance and typ
 | ![View Transitions](https://img.shields.io/badge/View%20Transitions-SPA-6E5494?logo=astro&logoColor=white) | Provides a SPA-like feel (smooth fading, persistent sidebar) while maintaining the benefits of a multi-page application using Astro ClientRouter. |
 | ![Markdown](https://img.shields.io/badge/Markdown-Content-000000?logo=markdown&logoColor=white) | Used for the actual documentation content, making it easy to write and format technical notes. |
 
+
 ---
 
 <div align="center">
-    <em>This project will be updated as I learn new libraries, languages, and technologies.</em>
+<sub>
+
+Source code is licensed under the MIT License.
+Documentation is licensed under Creative Commons Attribution-NonCommercial 4.0 (CC BY-NC 4.0).
+
+</sub>
 </div>
